@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mastering Communication · 60-Day Portal with Vinh Giang</title>
+<style>
+  :root{
+    --bg:#0e1116; --bg2:#151a21; --card:#1a2029; --card2:#212834;
+    --line:#2b3340; --txt:#e8edf3; --muted:#9aa7b8; --faint:#6b7889;
+    --accent:#5b8cff; --accent2:#7c5cff; --good:#36d399; --warn:#ffb020; --bad:#ff5d73;
+    --ring:rgba(91,140,255,.35);
+    --sh:0 6px 24px rgba(0,0,0,.35);
+    --r:16px; --r2:12px;
+    --p1:#5b8cff; --p2:#2dd4bf; --p3:#f59e0b; --p4:#ec4899; --p5:#a78bfa;
+  }
+  [data-theme="light"]{
+    --bg:#f4f6fb; --bg2:#eef1f7; --card:#ffffff; --card2:#f7f9fd;
+    --line:#e2e7f0; --txt:#141a22; --muted:#55627a; --faint:#8793a8;
+    --sh:0 6px 20px rgba(30,50,90,.08);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+       background:radial-gradient(1200px 600px at 80% -10%,rgba(124,92,255,.10),transparent 60%),
+                  radial-gradient(900px 500px at -10% 10%,rgba(91,140,255,.10),transparent 55%),var(--bg);
+       color:var(--txt);line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 18px}
+
+  /* ---------- Header ---------- */
+  header.top{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);
+       background:color-mix(in srgb,var(--bg) 78%,transparent);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;gap:14px;padding:12px 0}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px}
+  .logo{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent2));
+        display:grid;place-items:center;font-size:18px;box-shadow:var(--sh)}
+  .nav .sp{flex:1}
+  .nav a.navlink{color:var(--muted);font-size:14px;font-weight:600;padding:6px 10px;border-radius:9px}
+  .nav a.navlink:hover{color:var(--txt);background:var(--card);text-decoration:none}
+  .iconbtn{background:var(--card);border:1px solid var(--line);color:var(--txt);width:38px;height:38px;
+      border-radius:10px;cursor:pointer;font-size:16px;display:grid;place-items:center}
+  .iconbtn:hover{border-color:var(--accent)}
+  @media(max-width:760px){.nav a.navlink{display:none}}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:34px 0 10px}
+  .eyebrow{color:var(--accent);font-weight:700;font-size:13px;letter-spacing:1.5px;text-transform:uppercase}
+  h1{font-size:clamp(28px,5vw,46px);line-height:1.08;margin:10px 0 8px;letter-spacing:-.5px}
+  h1 .grad{background:linear-gradient(120deg,var(--accent),var(--p2),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{color:var(--muted);max-width:720px;font-size:16px}
+  .pill{display:inline-flex;gap:7px;align-items:center;background:var(--card);border:1px solid var(--line);
+      border-radius:999px;padding:6px 13px;font-size:13px;color:var(--muted);margin:14px 8px 0 0}
+  .pill b{color:var(--txt)}
+
+  /* ---------- Cards / layout ---------- */
+  section{padding:28px 0;scroll-margin-top:72px}
+  .sec-h{display:flex;align-items:baseline;gap:12px;margin:0 0 16px}
+  .sec-h h2{font-size:24px;margin:0;letter-spacing:-.3px}
+  .sec-h span{color:var(--faint);font-size:14px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px;box-shadow:var(--sh)}
+  .grid{display:grid;gap:16px}
+
+  /* ---------- Dashboard ---------- */
+  .dash{grid-template-columns:1.3fr 1fr}
+  @media(max-width:860px){.dash{grid-template-columns:1fr}}
+  .stat-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:4px}
+  .stat{flex:1;min-width:120px;background:var(--card2);border:1px solid var(--line);border-radius:var(--r2);padding:14px}
+  .stat .n{font-size:28px;font-weight:800;line-height:1}
+  .stat .l{color:var(--muted);font-size:12.5px;margin-top:4px}
+  .bar{height:12px;background:var(--bg2);border-radius:99px;overflow:hidden;border:1px solid var(--line);margin-top:6px}
+  .bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--p2));transition:width .5s}
+  .mini{color:var(--muted);font-size:13px;margin-top:10px}
+  .btn{display:inline-flex;align-items:center;gap:8px;cursor:pointer;border:1px solid var(--line);
+     background:var(--card2);color:var(--txt);padding:10px 15px;border-radius:11px;font-weight:650;font-size:14px;transition:.15s}
+  .btn:hover{border-color:var(--accent);transform:translateY(-1px)}
+  .btn.primary{background:linear-gradient(120deg,var(--accent),var(--accent2));border:none;color:#fff}
+  .btn.ghost{background:transparent}
+  .btn.good{border-color:var(--good);color:var(--good)}
+  .btn.sm{padding:7px 11px;font-size:13px;border-radius:9px}
+  .btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+  /* ---------- Lesson panel ---------- */
+  #lessonPanel{scroll-margin-top:72px}
+  .lesson-grid{grid-template-columns:1.5fr 1fr}
+  @media(max-width:860px){.lesson-grid{grid-template-columns:1fr}}
+  .videoBox{position:relative;border-radius:var(--r2);overflow:hidden;background:#000;border:1px solid var(--line)}
+  .videoBox .ar{position:relative;width:100%;padding-top:56.25%}
+  .videoBox iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .clipbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:10px}
+  .clipbar .tag{font-size:12px;color:var(--faint)}
+  .chip{background:var(--card2);border:1px solid var(--line);border-radius:8px;padding:5px 9px;font-size:12.5px;color:var(--muted)}
+  .badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
+     padding:3px 9px;border-radius:99px;color:#fff}
+  .mission{background:var(--card2);border:1px solid var(--line);border-left:3px solid var(--accent);
+     border-radius:10px;padding:13px 15px;margin:12px 0}
+  .mission h4{margin:0 0 5px;font-size:13px;letter-spacing:.4px;text-transform:uppercase;color:var(--accent)}
+  .drill h4{color:var(--p2)}.drill{border-left-color:var(--p2)}
+  .lookfor h4{color:var(--p3)}.lookfor{border-left-color:var(--p3)}
+  textarea.note{width:100%;min-height:72px;background:var(--bg2);border:1px solid var(--line);border-radius:10px;
+     color:var(--txt);padding:10px;font-family:inherit;font-size:14px;resize:vertical}
+
+  /* timer */
+  .timer{font-variant-numeric:tabular-nums;font-size:30px;font-weight:800;letter-spacing:1px}
+  .timer.run{color:var(--good)}
+
+  /* ---------- Phase roadmap ---------- */
+  .phase{margin-top:14px;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--card)}
+  .phase>summary{list-style:none;cursor:pointer;padding:15px 18px;display:flex;align-items:center;gap:12px}
+  .phase>summary::-webkit-details-marker{display:none}
+  .phase .pn{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;font-weight:800;color:#fff;font-size:14px}
+  .phase .pt{font-weight:750}
+  .phase .pmeta{color:var(--faint);font-size:12.5px}
+  .phase .psp{flex:1}
+  .phase .pbar{width:120px}
+  .days{padding:6px 10px 14px}
+  .dayitem{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:10px;cursor:pointer;border:1px solid transparent}
+  .dayitem:hover{background:var(--card2);border-color:var(--line)}
+  .dayitem.active{background:var(--card2);border-color:var(--accent)}
+  .dcheck{width:22px;height:22px;border-radius:7px;border:2px solid var(--line);display:grid;place-items:center;flex:none;font-size:13px;color:#fff}
+  .dcheck.on{background:var(--good);border-color:var(--good)}
+  .dnum{font-weight:700;font-size:13px;color:var(--faint);width:42px;flex:none}
+  .dttl{flex:1;font-size:14.5px}
+  .dmin{font-size:12px;color:var(--faint);flex:none}
+  @media(max-width:620px){.dmin{display:none}}
+
+  /* ---------- Studio ---------- */
+  .studio-grid{grid-template-columns:1fr 1fr}
+  @media(max-width:860px){.studio-grid{grid-template-columns:1fr}}
+  video.preview,audio.preview{width:100%;border-radius:12px;background:#000;border:1px solid var(--line)}
+  .reclamp{display:flex;align-items:center;gap:8px;color:var(--bad);font-weight:700;font-size:13px}
+  .dot{width:10px;height:10px;border-radius:50%;background:var(--bad);animation:pulse 1s infinite}
+  @keyframes pulse{50%{opacity:.25}}
+  .check{display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed var(--line);font-size:14px}
+  .check:last-child{border:0}
+  .check input{margin-top:4px;accent-color:var(--accent);width:16px;height:16px}
+
+  /* ---------- Tools ---------- */
+  .tool{display:flex;gap:12px;align-items:flex-start;padding:14px;background:var(--card2);border:1px solid var(--line);border-radius:12px}
+  .tool .ti{font-size:22px;flex:none}
+  .tool h4{margin:0 0 3px;font-size:15px}
+  .tool p{margin:0;color:var(--muted);font-size:13.5px}
+  .free{font-size:11px;font-weight:700;color:var(--good);border:1px solid var(--good);border-radius:99px;padding:1px 7px;margin-left:6px}
+  .cols3{grid-template-columns:repeat(3,1fr)}
+  .cols2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:860px){.cols3,.cols2{grid-template-columns:1fr}}
+
+  .note-box{background:color-mix(in srgb,var(--warn) 12%,transparent);border:1px solid color-mix(in srgb,var(--warn) 45%,transparent);
+     border-radius:12px;padding:13px 15px;font-size:13.5px;color:var(--txt)}
+  footer{border-top:1px solid var(--line);padding:26px 0;color:var(--faint);font-size:13px;margin-top:20px}
+  .kbd{font-family:ui-monospace,monospace;background:var(--card2);border:1px solid var(--line);border-radius:6px;padding:1px 6px;font-size:12px}
+  .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(20px);opacity:0;
+     background:var(--card);border:1px solid var(--accent);border-radius:12px;padding:11px 18px;box-shadow:var(--sh);
+     transition:.3s;z-index:100;font-weight:600;font-size:14px}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  @media print{header.top,.studio,#toolsSec,.hero .row,.iconbtn{display:none}body{background:#fff;color:#000}}
+</style>
+</head>
+<body>
+
+<header class="top"><div class="wrap nav">
+  <div class="brand"><div class="logo">🎙️</div><div>Mastering&nbsp;Communication</div></div>
+  <div class="sp"></div>
+  <a class="navlink" href="#dashboard">Dashboard</a>
+  <a class="navlink" href="#lessonPanel">Today</a>
+  <a class="navlink" href="#roadmap">90-Day Map</a>
+  <a class="navlink" href="#studio">Record Studio</a>
+  <a class="navlink" href="#toolsSec">AI Tools</a>
+  <button class="iconbtn" id="themeBtn" title="Toggle light/dark">🌙</button>
+</div></header>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="eyebrow">A self-paced lab · built around Vinh Giang</div>
+    <h1>Become a <span class="grad">clear, confident speaker</span><br>in 60 days of practice.</h1>
+    <p class="sub">10–25 minutes a day. Each day you watch a focused clip, run one timed drill, and record yourself to review. 60 practice days, spread across a 90-day window so exams &amp; quizzes never break your streak.</p>
+    <div>
+      <span class="pill">🎯 <b>60</b>&nbsp;practice days</span>
+      <span class="pill">🗓️ <b>90-day</b>&nbsp;window</span>
+      <span class="pill">⏱️ <b>10–25</b>&nbsp;min/day</span>
+      <span class="pill">🎬 record-&amp;-review built in</span>
+    </div>
+    <div class="row" style="margin-top:18px">
+      <button class="btn primary" onclick="openActive()">▶ Start / Resume today</button>
+      <button class="btn ghost" onclick="scrollToId('roadmap')">See the full roadmap</button>
+    </div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <section id="dashboard">
+    <div class="grid dash">
+      <div class="card">
+        <div class="sec-h"><h2>Your progress</h2><span id="dateline"></span></div>
+        <div class="stat-row">
+          <div class="stat"><div class="n" id="stDone">0<span style="font-size:15px;color:var(--faint)">/60</span></div><div class="l">Days completed</div></div>
+          <div class="stat"><div class="n" id="stStreak">0</div><div class="l">Current streak 🔥</div></div>
+          <div class="stat"><div class="n" id="stElapsed">0</div><div class="l">Days since start</div></div>
+          <div class="stat"><div class="n" id="stMin">0</div><div class="l">Minutes practiced</div></div>
+        </div>
+        <div class="bar"><i id="progFill"></i></div>
+        <div class="mini" id="paceLine">Set your start date to begin tracking.</div>
+      </div>
+      <div class="card">
+        <div class="sec-h"><h2>Setup</h2><span>one-time</span></div>
+        <label class="mini" for="startDate">Start date (your Day 1)</label><br>
+        <input type="date" id="startDate" class="btn" style="margin-top:6px;color-scheme:dark">
+        <div class="row" style="margin-top:12px">
+          <button class="btn sm" onclick="setToWed()">Use next Wed (18 Nov 2026)</button>
+          <button class="btn sm ghost" onclick="resetAll()">Reset all data</button>
+        </div>
+        <div class="note-box" style="margin-top:14px">Everything is saved in <b>this browser</b> (localStorage). Nothing is uploaded. Host the file on GitHub Pages and your progress lives on whatever device you open it on.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LESSON PANEL -->
+  <section id="lessonPanel">
+    <div class="sec-h"><h2 id="lpTitle">Today's session</h2><span id="lpPhase"></span></div>
+    <div class="grid lesson-grid">
+      <div>
+        <div class="card" style="padding:14px">
+          <div class="videoBox"><div class="ar"><div id="player"></div>
+            <div id="ytFallback" style="display:none;position:absolute;inset:0;background:var(--bg2);
+                 flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;padding:20px">
+              <div style="font-size:30px">▶️</div>
+              <div style="font-weight:700">This video won't embed here</div>
+              <div class="tag" style="max-width:320px">Some videos block embedding, and the in-app preview sandbox can block all of them. It plays fine on your hosted GitHub link — or just open it directly:</div>
+              <a class="btn primary" id="ytFallbackLink" target="_blank" rel="noopener">Watch on YouTube ↗</a>
+            </div>
+          </div></div>
+          <div class="clipbar">
+            <button class="btn sm primary" onclick="playClip()">▶ Play my clip</button>
+            <button class="btn sm" onclick="playFull()">Play full video</button>
+            <a class="btn sm" id="ytWatch" target="_blank" rel="noopener">Watch on YouTube ↗</a>
+            <span class="chip">In <b id="clipInLbl">0:00</b></span>
+            <button class="btn sm ghost" onclick="setIn()">Set in ⤓</button>
+            <span class="chip">Out <b id="clipOutLbl">end</b></span>
+            <button class="btn sm ghost" onclick="setOut()">Set out ⤒</button>
+            <button class="btn sm ghost" onclick="clearClip()">Clear</button>
+          </div>
+          <div class="clipbar">
+            <span class="tag">Can't find it? </span>
+            <a class="btn sm" id="ytSearch" target="_blank" rel="noopener">🔎 Find today's exact video on Vinh's channel ↗</a>
+          </div>
+          <p class="tag" style="margin:8px 2px 0">Tip: play, then tap <b>Set in</b> / <b>Set out</b> at the moment the useful part starts and ends. Your clip points are saved per day, so tomorrow you jump straight to the good bit.</p>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <div class="mission lookfor"><h4>🎧 Watch for</h4><div id="lpLook"></div></div>
+          <div class="mission"><h4>🎯 Today's mission</h4><div id="lpMission"></div></div>
+          <div class="mission drill"><h4>🏋️ Timed drill</h4><div id="lpDrill"></div></div>
+
+          <div class="card" style="background:var(--bg2);text-align:center;margin:12px 0">
+            <div class="timer" id="timer">00:00</div>
+            <div class="row" style="justify-content:center;margin-top:8px">
+              <button class="btn sm" id="tStart" onclick="timerStart()">Start drill timer</button>
+              <button class="btn sm ghost" onclick="timerStop()">Pause</button>
+              <button class="btn sm ghost" onclick="timerReset()">Reset</button>
+              <span class="chip">target <b id="tTarget">15</b> min</span>
+            </div>
+          </div>
+
+          <label class="mini">Reflection — what felt off? one thing to fix tomorrow</label>
+          <textarea class="note" id="dayNote" placeholder="e.g. too many 'ums' when I lost my place; pace sped up when nervous..."></textarea>
+          <div class="row" style="margin-top:12px;justify-content:space-between">
+            <div class="row">
+              <button class="btn sm" onclick="prevDay()">← Prev</button>
+              <button class="btn sm" onclick="nextDay()">Next →</button>
+            </div>
+            <button class="btn good" id="doneBtn" onclick="toggleDone()">✓ Mark day complete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROADMAP -->
+  <section id="roadmap">
+    <div class="sec-h"><h2>The 90-day roadmap</h2><span>60 practice days · 5 phases · tap any day to load it</span></div>
+    <div class="note-box">Miss a day for an exam or quiz? Nothing breaks. You only consume a lesson when you mark it <b>complete</b>, so your 60 sessions naturally stretch across ~90 days. Use <b>"Skip / rest day"</b> inside a lesson to log a gap without losing a module.</div>
+    <div id="roadmapWrap"></div>
+  </section>
+
+  <!-- STUDIO -->
+  <section id="studio" class="studio">
+    <div class="sec-h"><h2>🎬 Record &amp; Review studio</h2><span>Vinh's #1 method — self-audit, right here</span></div>
+    <div class="note-box" style="margin-bottom:14px">Record a <b>5-minute improvised</b> talk, leave it for a day, then review it <b>three ways</b>: audio-only (voice), muted video (body), and transcript (filler words). Recordings stay on your device during the session — hit <b>Download</b> to keep them. Nothing is uploaded.</div>
+    <div class="grid studio-grid">
+      <div class="card">
+        <h4 style="margin:0 0 8px">Recorder</h4>
+        <div class="row">
+          <button class="btn primary" id="recVideo" onclick="startRec(true)">● Record video</button>
+          <button class="btn" id="recAudio" onclick="startRec(false)">● Record audio only</button>
+          <button class="btn bad" id="recStop" onclick="stopRec()" disabled>■ Stop</button>
+        </div>
+        <div class="row" id="recStatus" style="margin-top:10px;min-height:22px"></div>
+        <video class="preview" id="livePreview" muted playsinline style="margin-top:10px;display:none"></video>
+        <div id="playbackWrap" style="margin-top:12px;display:none">
+          <h4 style="margin:0 0 6px">Your recording</h4>
+          <video class="preview" id="playback" controls playsinline style="display:none"></video>
+          <audio class="preview" id="playbackA" controls style="display:none"></audio>
+          <div class="row" style="margin-top:10px">
+            <a class="btn sm good" id="dlBtn" download>⤓ Download recording</a>
+            <span class="chip">Review it <b>tomorrow</b>, not now 😉</span>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h4 style="margin:0 0 8px">3-way review checklist</h4>
+        <b style="color:var(--p1);font-size:13px">1 · Audio only (eyes closed)</b>
+        <div class="check"><input type="checkbox"> Vocal variety — am I monotone or do I use melody?</div>
+        <div class="check"><input type="checkbox"> Pace — too fast when nervous? enough pauses?</div>
+        <div class="check"><input type="checkbox"> Do I finish sentences on a confident downward pitch?</div>
+        <b style="color:var(--p2);font-size:13px;display:block;margin-top:10px">2 · Muted video (watch, no sound)</b>
+        <div class="check"><input type="checkbox"> Posture open &amp; grounded? hands visible &amp; purposeful?</div>
+        <div class="check"><input type="checkbox"> Facial expression alive? eyes engaged?</div>
+        <div class="check"><input type="checkbox"> Any non-functional habits (sway, face-touch, fidget)?</div>
+        <b style="color:var(--p3);font-size:13px;display:block;margin-top:10px">3 · Transcript (text only)</b>
+        <div class="check"><input type="checkbox"> Highlight every "um / uh / like / you know / so"</div>
+        <div class="check"><input type="checkbox"> Where do I ramble or trail off?</div>
+        <div class="check"><input type="checkbox"> Circle 3 power words I could land harder</div>
+        <p class="tag" style="margin-top:8px">Get a free transcript from any tool in the AI section below, then paste it somewhere and highlight.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOOLS -->
+  <section id="toolsSec">
+    <div class="sec-h"><h2>Free tools &amp; AI to review your speaking</h2><span>check each site for its current free tier</span></div>
+    <div class="grid cols3">
+      <a class="tool" href="https://yoodli.ai" target="_blank" rel="noopener"><div class="ti">🤖</div><div><h4>Yoodli<span class="free">free tier</span></h4><p>AI speech coach — flags filler words, pacing, and gives private feedback on practice recordings.</p></div></a>
+      <a class="tool" href="https://www.descript.com" target="_blank" rel="noopener"><div class="ti">✂️</div><div><h4>Descript<span class="free">free tier</span></h4><p>Auto-transcribe your recording and one-click find every "um" — perfect for the transcript review.</p></div></a>
+      <a class="tool" href="https://otter.ai" target="_blank" rel="noopener"><div class="ti">📝</div><div><h4>Otter.ai<span class="free">free tier</span></h4><p>Fast free transcription. Export the text, then highlight filler words and rambles by hand.</p></div></a>
+      <a class="tool" href="https://claude.ai" target="_blank" rel="noopener"><div class="ti">🧠</div><div><h4>Claude<span class="free">free tier</span></h4><p>Paste your transcript and ask for a filler-word count, clarity score, and 3 concrete fixes.</p></div></a>
+      <a class="tool" href="https://chat.openai.com" target="_blank" rel="noopener"><div class="ti">💬</div><div><h4>ChatGPT<span class="free">free tier</span></h4><p>Rehearse Q&amp;A, get impromptu-speaking prompts, or have it role-play a tough audience.</p></div></a>
+      <a class="tool" href="https://www.poised.com" target="_blank" rel="noopener"><div class="ti">🎚️</div><div><h4>Poised<span class="free">free tier</span></h4><p>Real-time coaching on calls — pacing, filler words, energy. Great for the online-communication phase.</p></div></a>
+    </div>
+    <p class="tag" style="margin-top:12px">Your phone's <b>voice recorder</b> and <b>camera</b> are the only must-haves — Vinh built his whole method on exactly that. The tools above just speed up the review.</p>
+  </section>
+
+  <footer>
+    <div><b>Mastering Communication</b> — a personal practice portal. Lessons are inspired by the free public teaching of <a href="https://www.youtube.com/@askvinh" target="_blank" rel="noopener">Vinh Giang (@askvinh)</a>; all videos play from his official YouTube channel. This portal is a study aid, not affiliated with or endorsed by Vinh Giang.</div>
+    <div style="margin-top:8px">Built for Revant · host free on GitHub Pages · progress saved locally in your browser.</div>
+  </footer>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================
+   CURRICULUM  — 60 practice days, Vinh Giang framework
+   vid = a real video on his channel used as the day's anchor;
+   topic = pre-fills a YouTube search so you can grab his exact
+           latest video on that sub-skill.
+   ============================================================ */
+const PHASES=[
+  {id:1,name:"Vocal Foundations & Baseline",color:"var(--p1)"},
+  {id:2,name:"Clarity & Fluency",color:"var(--p2)"},
+  {id:3,name:"Body & Presence",color:"var(--p3)"},
+  {id:4,name:"Connection & Storytelling",color:"var(--p4)"},
+  {id:5,name:"Performance & Mastery",color:"var(--p5)"},
+];
+// anchor videos (verified IDs on @askvinh / linked)
+const V={
+  vocal9:"hIFCxzdSGfU",      // 9-min speak-clearer breathing exercise (your link)
+  master:"g0kzHjmvuYQ",      // 13 Years of Communication in 53 min
+  levels:"jliZE_XsHow",      // 5 levels of vocal delivery (short)
+  reasons:"6HJZRD-jZbc",     // 5 reasons you SHOULDN'T improve (mindset short)
+  anywhere:"P7ArmIU1LtM",    // Learn communication anywhere (short)
+  solveS:"QKlHhoPc0Js",      // We solve your comms problems (short)
+  solveL:"Is-OxByUl_A",      // ...feat Vanessa Van Edwards (long)
+  vinhali:"wRlJaXVs81E",     // Vinh & Ali Show EP49
+  imfine:"U74HLzaGSvg",      // "I'm fine 😒" tone/subtext (short)
+};
+const DAYS=[
+ // ---- PHASE 1 : Vocal Foundations & Baseline ----
+ {p:1,t:"Record your baseline",min:15,vid:V.master,topic:"Vinh Giang record and review method",
+  look:"His 'record & review' method near the end — why you film yourself before changing anything.",
+  mission:"Film a 5-minute improvised talk about your week. Don't fix anything — this is your 'before'. Save it in the Studio as <b>Day 1 baseline</b>.",
+  drill:"5 min improv to camera. No notes, no restarts. Just talk."},
+ {p:1,t:"The 5 vocal foundations",min:15,vid:V.master,topic:"Vinh Giang 5 vocal foundations",
+  look:"Rate of speech, volume, pitch, tonality, melody — the 5 dials you can actually turn.",
+  mission:"Write the 5 foundations on a sticky note. Rate yourself 1–5 on each from your Day 1 tape.",
+  drill:"Read one paragraph aloud 5 times, exaggerating ONE foundation each time."},
+ {p:1,t:"Breath & airflow",min:12,vid:V.vocal9,topic:"Vinh Giang breathing exercise speak clearer",
+  look:"The 3 short breathing drills — control the air behind your words to kill mumbling & vocal fry.",
+  mission:"Do all 3 breathing exercises from the video. Notice where your breath runs out mid-sentence.",
+  drill:"3× the siren/breath drills, then read a paragraph on one controlled breath per line."},
+ {p:1,t:"Rate of speech (pace)",min:12,vid:V.levels,topic:"Vinh Giang rate of speech pace",
+  look:"How changing pace alone changes how smart & calm you sound.",
+  mission:"Record 1 minute at your normal pace, then the same line 30% slower. Compare.",
+  drill:"Read a news paragraph at slow / medium / fast. Pick the pace that sounds most authoritative."},
+ {p:1,t:"Volume & projection",min:12,vid:V.master,topic:"Vinh Giang volume projection voice",
+  look:"Using volume as punctuation — getting louder AND quieter on purpose.",
+  mission:"Deliver 3 sentences: one normal, one projected to the 'back of the room', one near-whisper.",
+  drill:"Say your name + one sentence at 5 volume levels. Find your 'confident default'."},
+ {p:1,t:"Pitch range",min:12,vid:V.levels,topic:"Vinh Giang pitch voice range",
+  look:"Widening your pitch range so you stop sounding flat.",
+  mission:"Hum from your lowest comfortable note to highest, 5×. Then speak a line using more of that range.",
+  drill:"Read a kids' story out loud with cartoonish pitch — then dial it back to 60%."},
+ {p:1,t:"Tonality & vocal image",min:15,vid:V.master,topic:"Vinh Giang vocal image tonality",
+  look:"'Vocal image' — the instant impression your voice makes, and that you can style it like clothes.",
+  mission:"Describe the vocal image you want (warm? sharp? calm?). Say one sentence 'in character'.",
+  drill:"Record the same greeting in 3 tonalities: friendly, authoritative, curious."},
+ {p:1,t:"Melody (beat the monotone)",min:12,vid:V.master,topic:"Vinh Giang vocal melody monotone",
+  look:"Why monotone kills attention and how melody rescues it.",
+  mission:"Take one flat sentence and add a rising-then-falling melody. Record both.",
+  drill:"Read a paragraph as if telling exciting gossip — all melody, no monotone."},
+ {p:1,t:"Articulation & enunciation",min:12,vid:V.vocal9,topic:"Vinh Giang articulation clarity diction",
+  look:"Crisp consonants = clarity. Lazy mouth = mumbling.",
+  mission:"Do 2 min of tongue-twisters, then re-read Day 3's paragraph. Hear the difference.",
+  drill:"Tongue twisters ×5, over-articulating every consonant, then one clean read."},
+ {p:1,t:"Resonance & warmth",min:12,vid:V.vocal9,topic:"Vinh Giang resonance warm voice",
+  look:"Placing your voice in the chest for a fuller, warmer sound.",
+  mission:"Hum and feel the buzz move from nose → chest. Speak from the chest placement.",
+  drill:"Record a line nasal vs chest-placed. Keep the warmer one."},
+ {p:1,t:"Build your 5-min warm-up",min:15,vid:V.vocal9,topic:"Vinh Giang vocal warm up routine",
+  look:"Assemble a repeatable pre-speaking warm-up from everything so far.",
+  mission:"Write your personal 5-move warm-up (breath, siren, twister, pitch, melody). Save it as a note.",
+  drill:"Run your new warm-up once, timed."},
+ {p:1,t:"Phase 1 audit · audio only",min:20,vid:V.master,topic:"Vinh Giang auditory review voice",
+  look:"How to review a recording with your eyes closed — voice only.",
+  mission:"Record 3 min, then listen back with eyes shut. Score the 5 foundations vs Day 2.",
+  drill:"3 min improv → audio-only review → one sentence of what improved."},
+
+ // ---- PHASE 2 : Clarity & Fluency ----
+ {p:2,t:"Non-words vs filler words",min:12,vid:V.master,topic:"Vinh Giang filler words um ah",
+  look:"Non-words ('um','uh') vs filler words ('like','so','you know') — both are 'auditory clutter'.",
+  mission:"List your top 3 personal fillers (check your Day 1 tape).",
+  drill:"Talk for 2 min about your day; a friend/phone taps every filler. Count them."},
+ {p:2,t:"The power of the pause",min:12,vid:V.master,topic:"Vinh Giang power of the pause",
+  look:"Silence is a tool, not a gap to fill. Pauses add authority & let the audience think.",
+  mission:"Deliver a 5-sentence point, holding a 2-second pause after each key idea.",
+  drill:"Read a paragraph inserting a deliberate pause at every full stop. Resist filling it."},
+ {p:2,t:"Swap fillers → pauses",min:15,vid:V.master,topic:"Vinh Giang stop saying um pause",
+  look:"The core fix: when you feel a filler coming, PAUSE instead.",
+  mission:"Talk 3 min on a topic; every time you'd say 'um', close your mouth and pause.",
+  drill:"Record 2 min, aiming for zero fillers. Replay and count."},
+ {p:2,t:"Transcribe & highlight",min:20,vid:V.master,topic:"Vinh Giang transcript review filler",
+  look:"Why reading your own transcript exposes clutter you can't hear.",
+  mission:"Transcribe 2 min of yourself (free tool below) and highlight every filler + ramble in red.",
+  drill:"Re-record the same 2 min cleaner. Compare transcripts."},
+ {p:2,t:"Finish on a downward pitch",min:12,vid:V.levels,topic:"Vinh Giang downward pitch uptalk authority",
+  look:"Ending sentences UP (uptalk) sounds unsure; ending DOWN sounds certain.",
+  mission:"Say 5 statements, consciously dropping pitch on the last word of each.",
+  drill:"Record a short intro about yourself ending every line on a confident downward note."},
+ {p:2,t:"Stop trailing off",min:12,vid:V.master,topic:"Vinh Giang trailing off mumbling end of sentence",
+  look:"Keeping energy to the END of the sentence instead of fading out.",
+  mission:"Deliver 5 sentences at FULL energy on the final 3 words.",
+  drill:"Read a paragraph, pushing clarity hardest on each sentence's last word."},
+ {p:2,t:"Pace for emphasis",min:12,vid:V.levels,topic:"Vinh Giang slow down emphasis key point",
+  look:"Slowing down on the key line makes it land.",
+  mission:"Pick your most important sentence and deliver it noticeably slower than the rest.",
+  drill:"Tell a 1-min story, slamming the brakes on the single most important moment."},
+ {p:2,t:"Kill the ramble (be concise)",min:15,vid:V.solveS,topic:"Vinh Giang stop rambling concise",
+  look:"Structuring a thought so you stop over-explaining.",
+  mission:"Answer 'tell me about yourself' in exactly 3 sentences. Record it.",
+  drill:"Point-first: state your conclusion, then ONE reason, then stop."},
+ {p:2,t:"Vocabulary upgrade",min:12,vid:V.master,topic:"Vinh Giang vocabulary word choice",
+  look:"Choosing sharper words raises your perceived credibility.",
+  mission:"From a transcript, replace 5 weak/vague words with precise ones.",
+  drill:"Describe your day using zero 'very / really / kind of / stuff'."},
+ {p:2,t:"Land your power words",min:12,vid:V.levels,topic:"Vinh Giang emphasis power words stress",
+  look:"Stressing the right word changes the whole meaning of a line.",
+  mission:"Take one sentence; say it 4× stressing a different word each time. Notice meaning shift.",
+  drill:"Mark the 2 power words in each sentence of a short paragraph and hit them."},
+ {p:2,t:"Silence as a weapon",min:12,vid:V.master,topic:"Vinh Giang silence confident speaker",
+  look:"Comfort with silence signals confidence; rushing signals fear.",
+  mission:"Ask yourself a question on camera, pause a full 3 seconds, then answer calmly.",
+  drill:"Deliver a point, go silent for 3s, continue. Sit in the discomfort."},
+ {p:2,t:"Phase 2 audit · transcript",min:20,vid:V.master,topic:"Vinh Giang review clarity progress",
+  look:"Re-run the transcript review and measure filler reduction.",
+  mission:"Record 3 min, transcribe, count fillers. Compare to Day 13.",
+  drill:"3 min improv → transcript → filler count → note the drop."},
+
+ // ---- PHASE 3 : Body & Presence ----
+ {p:3,t:"Visual image · mute review",min:15,vid:V.master,topic:"Vinh Giang visual image body language",
+  look:"'Visual image' = dress + body language; audiences judge it in 30–60 seconds.",
+  mission:"Watch your Day 1 tape ON MUTE. Note 3 things your body does that distract.",
+  drill:"Muted self-review + list your top nervous tells."},
+ {p:3,t:"Posture & grounding",min:12,vid:V.master,topic:"Vinh Giang posture stance presence",
+  look:"A grounded, open stance that reads as calm authority.",
+  mission:"Film 60s standing: feet grounded, chest open, weight still. No swaying.",
+  drill:"Hold a grounded stance and speak; catch yourself every time you sway."},
+ {p:3,t:"Functional vs non-functional gestures",min:15,vid:V.master,topic:"Vinh Giang functional gestures hands",
+  look:"Gestures that ADD meaning vs nervous ones that leak anxiety.",
+  mission:"Record 1 min; label each gesture 'functional' or 'noise' on replay.",
+  drill:"Re-deliver using only gestures that match your words."},
+ {p:3,t:"Foundational hand gestures",min:15,vid:V.solveL,topic:"Vinh Giang hand gestures presentation",
+  look:"A few reliable 'home base' gestures for presence & authority.",
+  mission:"Practice 3 gestures: the number count, the open palm, the 'placing' gesture.",
+  drill:"Explain a 3-step idea using one deliberate gesture per step."},
+ {p:3,t:"Open vs closed body language",min:12,vid:V.master,topic:"Vinh Giang open body language",
+  look:"Open body = trust; closed (crossed, hidden hands) = distance.",
+  mission:"Deliver a line closed, then open. Feel & see the difference on camera.",
+  drill:"Keep hands visible and chest open for a full 2-min talk."},
+ {p:3,t:"Eye contact (in person)",min:12,vid:V.solveL,topic:"Vinh Giang eye contact speaking",
+  look:"Holding eye contact per thought instead of darting around.",
+  mission:"Talk to 3 'people' (objects in the room), holding each for one full sentence.",
+  drill:"One sentence per 'eye', no darting, for 2 minutes."},
+ {p:3,t:"Facial expression",min:12,vid:V.imfine,topic:"Vinh Giang facial expression smile eyes",
+  look:"How a dead face flattens great words — and how 'smiling eyes' change tone.",
+  mission:"Say one warm sentence with a flat face, then with engaged eyes. Compare.",
+  drill:"Tell a happy story letting your face fully react."},
+ {p:3,t:"Own the space (movement)",min:12,vid:V.master,topic:"Vinh Giang stage movement presence",
+  look:"Purposeful movement vs pacing. Move TO punctuate, then plant.",
+  mission:"Deliver 3 points, taking one deliberate step between each, then standing still.",
+  drill:"Walk-to-plant for each new idea; no aimless pacing."},
+ {p:3,t:"Fix a nervous habit",min:12,vid:V.master,topic:"Vinh Giang nervous habits fidget",
+  look:"Isolating ONE non-functional habit and killing it.",
+  mission:"Pick your #1 tell (face-touch, sway, pocket). Film 2 min consciously avoiding it.",
+  drill:"2-min talk with your hands 'home-based' the whole time."},
+ {p:3,t:"Pre-performance routine",min:12,vid:V.solveS,topic:"Vinh Giang nerves adrenaline before speaking",
+  look:"Burning off adrenaline (brisk movement + breath) before you speak.",
+  mission:"Build a 2-min pre-talk routine: move, breathe, warm up the voice.",
+  drill:"Do your routine, then immediately give a 1-min talk. Note the calm."},
+ {p:3,t:"Congruence (words = body)",min:12,vid:V.master,topic:"Vinh Giang congruence body language message",
+  look:"When body contradicts words, people believe the body.",
+  mission:"Say 'I'm really excited about this' until your body/voice/face all agree.",
+  drill:"Deliver an enthusiastic line that your whole body backs up."},
+ {p:3,t:"Phase 3 audit · mute video",min:20,vid:V.master,topic:"Vinh Giang visual review body language progress",
+  look:"Mute-review method to measure body-language gains.",
+  mission:"Film 3 min, watch on mute, compare body language to Day 25.",
+  drill:"3 min → muted review → one body win, one still-to-fix."},
+
+ // ---- PHASE 4 : Connection & Storytelling ----
+ {p:4,t:"First 30–60 seconds",min:12,vid:V.solveS,topic:"Vinh Giang first impression opening",
+  look:"Audiences decide if they like/trust you in the first 30–60s.",
+  mission:"Write & record a 30-second opening that earns attention (no 'um, so, hi…').",
+  drill:"Deliver your opening 3×, trimming weak words each time."},
+ {p:4,t:"Opening hooks",min:12,vid:V.solveL,topic:"Vinh Giang hook opening presentation",
+  look:"Hooks: a question, a bold claim, a short story, a stat.",
+  mission:"Write 3 different hooks for the same topic. Record your favourite.",
+  drill:"Open with a story-in-one-sentence, then pause."},
+ {p:4,t:"VAKS storytelling",min:18,vid:V.solveL,topic:"Vinh Giang VAKS storytelling formula",
+  look:"Visual-Auditory-Kinesthetic sensory detail to make a story vivid.",
+  mission:"Take a dull anecdote and add what you SAW, HEARD, and FELT.",
+  drill:"Tell a 90-sec story loaded with sensory detail."},
+ {p:4,t:"Relive, don't report",min:15,vid:V.solveL,topic:"Vinh Giang relive vs report story",
+  look:"Reliving a moment (present, emotional) vs reporting facts (flat).",
+  mission:"Retell a memory as if it's happening NOW — present tense, in the scene.",
+  drill:"Same story twice: reported, then relived. Feel the gap."},
+ {p:4,t:"Find the peak lesson",min:12,vid:V.solveL,topic:"Vinh Giang peak lesson story point",
+  look:"Every story needs ONE clear point. Cut the rest.",
+  mission:"Write the single lesson of your story in one sentence; end on it.",
+  drill:"Tell a 60-sec story that drives to exactly one takeaway."},
+ {p:4,t:"Structure: start-middle-end",min:15,vid:V.master,topic:"Vinh Giang structure message beginning middle end",
+  look:"A simple spine so you never ramble: setup → turn → payoff.",
+  mission:"Outline a 2-min talk in 3 beats, then deliver it.",
+  drill:"2-min talk hitting setup, turn, payoff — timed."},
+ {p:4,t:"Wit & humour",min:12,vid:V.master,topic:"Vinh Giang humour wit benign violation",
+  look:"Timing + 'benign violation' — funny without being offensive.",
+  mission:"Add one light, self-aware line to your talk. Land it with a pause.",
+  drill:"Deliver a line, pause for the 'laugh', continue — practice the timing."},
+ {p:4,t:"Deep listening · 4 channels",min:15,vid:V.vinhali,topic:"Vinh Giang listening words tone body energy",
+  look:"Listen to words + tone + body + energy, not just words.",
+  mission:"In your next real conversation, name the other person's emotion before replying.",
+  drill:"Watch 2 min of an interview on mute-ish; read tone & energy, not content."},
+ {p:4,t:"Match & mirror",min:12,vid:V.vinhali,topic:"Vinh Giang match mirror rapport",
+  look:"Meeting someone's energy/pace first, then guiding it.",
+  mission:"Practice matching a calm pace, then a high-energy pace, on demand.",
+  drill:"Record the same greeting at 'low energy' and 'high energy' to flex range."},
+ {p:4,t:"Hi-Lo-Buffalo connection",min:12,vid:V.vinhali,topic:"Vinh Giang hi lo buffalo conversation game",
+  look:"A simple game to spark real, two-way conversation.",
+  mission:"Learn the Hi-Lo-Buffalo prompts; try them with a friend or family member tonight.",
+  drill:"Rehearse your own 'hi / lo / buffalo' answers out loud."},
+ {p:4,t:"Speak to ONE person",min:12,vid:V.solveS,topic:"Vinh Giang speak to one person you",
+  look:"Say 'you', focus on one receptive face — it kills nerves & feels personal.",
+  mission:"Rewrite a line from 'everyone/you all' to singular 'you'. Deliver to one point.",
+  drill:"Give a 1-min talk as if to a single friend across the table."},
+ {p:4,t:"Phase 4 audit · story retell",min:20,vid:V.solveL,topic:"Vinh Giang storytelling review",
+  look:"Combine melody + body + story into one retelling.",
+  mission:"Record your best 2-min story. Review all 3 ways. Note connection vs Day 1.",
+  drill:"2-min signature story, full performance, then 3-way review."},
+
+ // ---- PHASE 5 : Performance & Mastery ----
+ {p:5,t:"Online communication",min:15,vid:V.solveL,topic:"Vinh Giang online communication camera zoom",
+  look:"Why online flattens energy and how to counter it.",
+  mission:"Set your camera at eye level, light on your face. Record a 1-min 'video message'.",
+  drill:"Deliver to the lens as if it's a person; add 20% more energy."},
+ {p:5,t:"Camera presence & eye line",min:12,vid:V.solveL,topic:"Vinh Giang look at camera eye contact online",
+  look:"Looking at the LENS, not the screen, to 'meet eyes' online.",
+  mission:"Record 60s holding the lens; peek at yourself only between thoughts.",
+  drill:"Talk to the camera dot for a full minute without looking away."},
+ {p:5,t:"Be generous with energy",min:12,vid:V.solveS,topic:"Vinh Giang energy generous audience online",
+  look:"Giving MORE energy than feels natural to reach people through a screen.",
+  mission:"Record the same line at 'normal' and 'generous' energy. Keep the bigger one.",
+  drill:"Over-deliver a 1-min pep talk; it'll feel like too much — it's right."},
+ {p:5,t:"Handle nerves & adrenaline",min:12,vid:V.solveS,topic:"Vinh Giang nerves adrenaline public speaking",
+  look:"Reframing adrenaline as fuel; using breath to steady it.",
+  mission:"Before recording, do 20 fast movements + 4 slow breaths. Then speak.",
+  drill:"Spike your heart rate, then deliver a calm 1-min talk."},
+ {p:5,t:"Impromptu speaking",min:15,vid:V.solveS,topic:"Vinh Giang impromptu off the cuff speaking",
+  look:"A simple frame (Point–Reason–Example–Point) for thinking on your feet.",
+  mission:"Pick 3 random words; speak 60s on each using P-R-E-P.",
+  drill:"Random-topic drill ×3, no prep, 60s each."},
+ {p:5,t:"Q&A handling",min:15,vid:V.solveS,topic:"Vinh Giang answering questions Q&A",
+  look:"Pause, restate the question, answer in one point, stop.",
+  mission:"Have someone fire 5 questions; practice pause → restate → one-point answers.",
+  drill:"Answer 5 tough questions concisely; no rambling."},
+ {p:5,t:"Reclaim space / interruptions",min:12,vid:V.imfine,topic:"Vinh Giang interruptions reclaim conversation",
+  look:"Calmly holding your turn when interrupted.",
+  mission:"Rehearse 2 lines to reclaim the floor ('Let me finish this thought…').",
+  drill:"Practice a steady, low-pitch 'hold' line without apologising."},
+ {p:5,t:"Persuasion & structure",min:15,vid:V.master,topic:"Vinh Giang persuasive structure message",
+  look:"Ordering a message so it actually moves people to act.",
+  mission:"Build a 2-min persuasive pitch: problem → stakes → solution → ask.",
+  drill:"Deliver the pitch; end on a crisp, specific ask."},
+ {p:5,t:"Difficult conversations / tone",min:12,vid:V.imfine,topic:"Vinh Giang tone difficult conversation",
+  look:"How tone carries subtext — 'I'm fine' can mean ten things.",
+  mission:"Say one hard sentence 3 ways: defensive, neutral, warm. Pick warm.",
+  drill:"Deliver a piece of feedback in a calm, warm, grounded tone."},
+ {p:5,t:"Deliver a full 5-min talk",min:25,vid:V.master,topic:"Vinh Giang deliver speech practice",
+  look:"Put it all together: voice + body + story + structure.",
+  mission:"Prepare & deliver a full 5-min talk on something you care about. Film it.",
+  drill:"One clean 5-min take, warm-up first, no notes."},
+ {p:5,t:"Final record-and-review",min:25,vid:V.master,topic:"Vinh Giang record review final",
+  look:"The full 3-way audit — your 'after'.",
+  mission:"Review today's 5-min talk audio / mute / transcript. Put it beside Day 1.",
+  drill:"Full 3-way review; write 3 wins vs your baseline."},
+ {p:5,t:"Your 90-day maintenance plan",min:15,vid:V.reasons,topic:"Vinh Giang keep improving communication habit",
+  look:"Why improvement is a practice, not a finish line (Kaizen).",
+  mission:"Write your keep-going plan: 2 weekly drills + 1 monthly record-and-review. Pin it.",
+  drill:"Record a 60-sec message to future-you about what to keep practising."},
+];
+
+/* ============================================================
+   STATE
+   ============================================================ */
+const LS="mc_portal_v1";
+let S=load();
+function load(){try{return JSON.parse(localStorage.getItem(LS))||def()}catch(e){return def()}}
+function def(){return{done:{},notes:{},clips:{},start:null,active:0,minutes:0}}
+function save(){localStorage.setItem(LS,JSON.stringify(S))}
+
+/* ============================================================
+   YOUTUBE PLAYER
+   ============================================================ */
+let player,ytReady=false,clipTimer=null;
+const tag=document.createElement('script');tag.src="https://www.youtube.com/iframe_api";
+document.head.appendChild(tag);
+window.onYouTubeIframeAPIReady=function(){
+  player=new YT.Player('player',{videoId:DAYS[S.active].vid,
+    host:'https://www.youtube-nocookie.com',
+    playerVars:{rel:0,modestbranding:1,playsinline:1},
+    events:{
+      onReady:()=>{ytReady=true;loadDay(S.active,true);},
+      onError:onPlayerError,
+      onStateChange:(e)=>{if(e.data===YT.PlayerState.PLAYING)hideFallback();}
+    }});
+};
+function ytUrl(id,start){return "https://www.youtube.com/watch?v="+id+(start>0?("&t="+Math.floor(start)+"s"):"");}
+function showFallback(){const f=document.getElementById('ytFallback');if(f)f.style.display="flex";
+  const d=DAYS[S.active],c=S.clips[S.active]||{};
+  const link=document.getElementById('ytFallbackLink');if(link)link.href=ytUrl(d.vid,c.start||0);}
+function hideFallback(){const f=document.getElementById('ytFallback');if(f)f.style.display="none";}
+function onPlayerError(e){showFallback();}
+function loadVideo(id,start){
+  if(!ytReady)return;
+  if(start&&start>0)player.cueVideoById({videoId:id,startSeconds:start});
+  else player.cueVideoById(id);
+}
+function playClip(){
+  if(!ytReady)return;
+  const c=S.clips[S.active]||{};const st=c.start||0;
+  player.seekTo(st,true);player.playVideo();
+  if(clipTimer)clearInterval(clipTimer);
+  if(c.end&&c.end>st){
+    clipTimer=setInterval(()=>{
+      if(player.getCurrentTime()>=c.end){player.pauseVideo();clearInterval(clipTimer);}
+    },300);
+  }
+}
+function playFull(){if(!ytReady)return;if(clipTimer)clearInterval(clipTimer);player.seekTo(0,true);player.playVideo();}
+function fmt(s){s=Math.max(0,Math.floor(s||0));return Math.floor(s/60)+":"+String(s%60).padStart(2,'0');}
+function setIn(){if(!ytReady)return;const c=S.clips[S.active]||{};c.start=Math.floor(player.getCurrentTime());S.clips[S.active]=c;save();renderClip();toast("In point set to "+fmt(c.start));}
+function setOut(){if(!ytReady)return;const c=S.clips[S.active]||{};c.end=Math.floor(player.getCurrentTime());S.clips[S.active]=c;save();renderClip();toast("Out point set to "+fmt(c.end));}
+function clearClip(){S.clips[S.active]={};save();renderClip();toast("Clip cleared");}
+function renderClip(){const c=S.clips[S.active]||{};clipInLbl.textContent=fmt(c.start||0);clipOutLbl.textContent=c.end?fmt(c.end):"end";
+  const d=DAYS[S.active];const w=document.getElementById('ytWatch');if(w)w.href=ytUrl(d.vid,c.start||0);
+  const fl=document.getElementById('ytFallbackLink');if(fl)fl.href=ytUrl(d.vid,c.start||0);}
+
+/* ============================================================
+   LESSON RENDER
+   ============================================================ */
+function loadDay(i,skipScroll){
+  i=Math.max(0,Math.min(DAYS.length-1,i));S.active=i;save();
+  const d=DAYS[i],ph=PHASES[d.p-1];
+  lpTitle.innerHTML=`Day ${i+1} · ${d.t}`;
+  lpPhase.innerHTML=`<span class="badge" style="background:${ph.color}">Phase ${d.p} · ${ph.name}</span>`;
+  lpLook.innerHTML=d.look;
+  lpMission.innerHTML=d.mission;
+  lpDrill.innerHTML=d.drill+` <span class="chip">~${d.min} min</span>`;
+  tTarget.textContent=d.min;targetMin=d.min;
+  dayNote.value=S.notes[i]||"";
+  ytSearch.href="https://www.youtube.com/results?search_query="+encodeURIComponent(d.topic);
+  renderClip();
+  hideFallback();
+  const c=S.clips[i]||{};
+  loadVideo(d.vid,c.start||0);
+  updateDoneBtn();
+  timerReset();
+  renderRoadmap();updateStats();
+  if(!skipScroll)scrollToId('lessonPanel');
+}
+function updateDoneBtn(){
+  const on=!!S.done[S.active];
+  doneBtn.innerHTML=on?"✓ Completed — undo":"✓ Mark day complete";
+  doneBtn.className="btn "+(on?"good":"primary");
+}
+function toggleDone(){
+  const i=S.active;
+  if(S.done[i]){delete S.done[i];S.minutes=Math.max(0,S.minutes-DAYS[i].min);}
+  else{S.done[i]=true;S.minutes+=DAYS[i].min;toast("🎉 Day "+(i+1)+" done! "+countDone()+"/60");}
+  save();updateDoneBtn();updateStats();renderRoadmap();
+}
+function nextDay(){saveNote();loadDay(S.active+1);}
+function prevDay(){saveNote();loadDay(S.active-1);}
+function openActive(){
+  // jump to first not-done day
+  let i=0;while(i<DAYS.length&&S.done[i])i++;
+  if(i>=DAYS.length)i=S.active;
+  loadDay(i);
+}
+function saveNote(){S.notes[S.active]=dayNote.value;save();}
+dayNote && dayNote.addEventListener('input',()=>{S.notes[S.active]=dayNote.value;save();});
+
+/* ============================================================
+   ROADMAP
+   ============================================================ */
+function renderRoadmap(){
+  const wrap=document.getElementById('roadmapWrap');let html="";
+  PHASES.forEach(ph=>{
+    const list=DAYS.map((d,idx)=>({d,idx})).filter(x=>x.d.p===ph.id);
+    const done=list.filter(x=>S.done[x.idx]).length;
+    const pct=Math.round(done/list.length*100);
+    const open=list.some(x=>x.idx===S.active)?"open":"";
+    html+=`<details class="phase" ${open}>
+      <summary>
+        <div class="pn" style="background:${ph.color}">${ph.id}</div>
+        <div><div class="pt">Phase ${ph.id} · ${ph.name}</div>
+        <div class="pmeta">Days ${list[0].idx+1}–${list[list.length-1].idx+1} · ${done}/${list.length} done</div></div>
+        <div class="psp"></div>
+        <div class="bar pbar"><i style="width:${pct}%;background:${ph.color}"></i></div>
+      </summary>
+      <div class="days">`;
+    list.forEach(x=>{
+      const on=S.done[x.idx]?"on":"";
+      const act=x.idx===S.active?"active":"";
+      html+=`<div class="dayitem ${act}" onclick="saveNote();loadDay(${x.idx})">
+        <div class="dcheck ${on}">${on?"✓":""}</div>
+        <div class="dnum">Day ${x.idx+1}</div>
+        <div class="dttl">${x.d.t}</div>
+        <div class="dmin">${x.d.min} min</div></div>`;
+    });
+    html+=`</div></details>`;
+  });
+  wrap.innerHTML=html;
+}
+
+/* ============================================================
+   STATS
+   ============================================================ */
+function countDone(){return Object.keys(S.done).length;}
+function updateStats(){
+  const dn=countDone();
+  stDone.innerHTML=dn+'<span style="font-size:15px;color:var(--faint)">/60</span>';
+  stMin.textContent=S.minutes;
+  progFill.style.width=(dn/60*100)+"%";
+  // streak = consecutive completed from day 1
+  let streak=0;for(let i=0;i<DAYS.length;i++){if(S.done[i])streak++;else break;}
+  stStreak.textContent=streak;
+  // elapsed + pace
+  if(S.start){
+    const d0=new Date(S.start+"T00:00:00");
+    const today=new Date();today.setHours(0,0,0,0);
+    const el=Math.max(0,Math.round((today-d0)/86400000));
+    stElapsed.textContent=el;
+    dateline.textContent="Started "+d0.toLocaleDateString(undefined,{day:'numeric',month:'short',year:'numeric'});
+    const windowDays=90;const left=windowDays-el;
+    if(dn>=60)paceLine.innerHTML="🏆 <b>All 60 done!</b> Move to your maintenance plan (Day 60).";
+    else if(left<=0)paceLine.innerHTML=`Your 90-day window is up — <b>${dn}/60</b> done. Totally fine to keep going at your pace.`;
+    else paceLine.innerHTML=`<b>${left}</b> days left in your 90-day window · <b>${60-dn}</b> sessions to go · you can skip ~<b>${Math.max(0,left-(60-dn))}</b> more days and still finish on time.`;
+  }else{
+    stElapsed.textContent="0";
+    dateline.textContent="";
+    paceLine.textContent="Set your start date above to begin tracking your 90-day window.";
+  }
+}
+
+/* ============================================================
+   DRILL TIMER
+   ============================================================ */
+let targetMin=15,tInt=null,tSec=0;
+function timerStart(){
+  if(tInt)return;timer.classList.add('run');tStart.textContent="Running…";
+  tInt=setInterval(()=>{tSec++;timer.textContent=fmt(tSec);
+    if(tSec===targetMin*60){toast("⏰ "+targetMin+" min — target hit!");timer.style.color="var(--warn)";}
+  },1000);
+}
+function timerStop(){clearInterval(tInt);tInt=null;timer.classList.remove('run');tStart.textContent="Resume timer";}
+function timerReset(){clearInterval(tInt);tInt=null;tSec=0;timer.textContent="00:00";timer.classList.remove('run');timer.style.color="";tStart.textContent="Start drill timer";}
+
+/* ============================================================
+   RECORD STUDIO (MediaRecorder)
+   ============================================================ */
+let mediaRec,chunks=[],stream,isVid=false;
+async function startRec(video){
+  try{
+    isVid=video;
+    stream=await navigator.mediaDevices.getUserMedia({audio:true,video:video});
+    if(video){livePreview.style.display="block";livePreview.srcObject=stream;livePreview.play();}
+    chunks=[];mediaRec=new MediaRecorder(stream);
+    mediaRec.ondataavailable=e=>{if(e.data.size)chunks.push(e.data);};
+    mediaRec.onstop=finishRec;
+    mediaRec.start();
+    recVideo.disabled=true;recAudio.disabled=true;recStop.disabled=false;
+    let secs=0;recStatus.innerHTML='<span class="reclamp"><span class="dot"></span>Recording… <b id="recTime">0:00</b></span>';
+    recInt=setInterval(()=>{secs++;const el=document.getElementById('recTime');if(el)el.textContent=fmt(secs);
+      if(secs===300)toast("5 minutes — great, you can stop now.");},1000);
+  }catch(err){recStatus.innerHTML='<span style="color:var(--bad)">⚠️ '+(err.name==='NotAllowedError'?'Camera/mic permission denied. Allow access & retry.':err.message)+'</span>';}
+}
+let recInt=null;
+function stopRec(){if(mediaRec&&mediaRec.state!=="inactive")mediaRec.stop();}
+function finishRec(){
+  clearInterval(recInt);
+  stream.getTracks().forEach(t=>t.stop());
+  livePreview.style.display="none";livePreview.srcObject=null;
+  const type=isVid?"video/webm":"audio/webm";
+  const blob=new Blob(chunks,{type});const url=URL.createObjectURL(blob);
+  playbackWrap.style.display="block";
+  const pv=document.getElementById('playback'),pa=document.getElementById('playbackA');
+  if(isVid){pv.style.display="block";pa.style.display="none";pv.src=url;}
+  else{pa.style.display="block";pv.style.display="none";pa.src=url;}
+  const ts=new Date().toISOString().slice(0,16).replace(/[:T]/g,'-');
+  dlBtn.href=url;dlBtn.download=`speaking-day${S.active+1}-${ts}.webm`;
+  recStatus.innerHTML='<span style="color:var(--good)">✓ Saved below. Review it <b>tomorrow</b>.</span>';
+  recVideo.disabled=false;recAudio.disabled=false;recStop.disabled=true;
+}
+
+/* ============================================================
+   SETUP / MISC
+   ============================================================ */
+function setToWed(){S.start="2026-11-18";startDate.value=S.start;save();updateStats();toast("Start set to Wed 18 Nov 2026");}
+startDate && startDate.addEventListener('change',e=>{S.start=e.target.value;save();updateStats();});
+function resetAll(){if(confirm("Erase all progress, notes and clips on this device?")){S=def();save();location.reload();}}
+function scrollToId(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});}
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2200);}
+
+/* theme */
+themeBtn.onclick=()=>{
+  const l=document.documentElement.getAttribute('data-theme')==='light';
+  document.documentElement.setAttribute('data-theme',l?'dark':'light');
+  themeBtn.textContent=l?'🌙':'☀️';localStorage.setItem('mc_theme',l?'dark':'light');
+};
+if(localStorage.getItem('mc_theme')==='light'){document.documentElement.setAttribute('data-theme','light');themeBtn.textContent='☀️';}
+
+/* init */
+if(S.start)startDate.value=S.start;
+renderRoadmap();updateStats();
+// lesson loads once YT is ready; render text now for instant paint:
+(function initText(){const d=DAYS[S.active],ph=PHASES[d.p-1];
+  lpTitle.innerHTML=`Day ${S.active+1} · ${d.t}`;
+  lpPhase.innerHTML=`<span class="badge" style="background:${ph.color}">Phase ${d.p} · ${ph.name}</span>`;
+  lpLook.innerHTML=d.look;lpMission.innerHTML=d.mission;lpDrill.innerHTML=d.drill+` <span class="chip">~${d.min} min</span>`;
+  tTarget.textContent=d.min;targetMin=d.min;dayNote.value=S.notes[S.active]||"";
+  ytSearch.href="https://www.youtube.com/results?search_query="+encodeURIComponent(d.topic);
+  renderClip();updateDoneBtn();
+})();
+</script>
+</body>
+</html>
