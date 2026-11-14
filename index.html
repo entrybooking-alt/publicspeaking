@@ -3,254 +3,311 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mastering Communication · 60-Day Portal with Vinh Giang</title>
+<title>Mastering Communication · 60-Day Portal</title>
 <style>
   :root{
-    --bg:#0e1116; --bg2:#151a21; --card:#1a2029; --card2:#212834;
-    --line:#2b3340; --txt:#e8edf3; --muted:#9aa7b8; --faint:#6b7889;
-    --accent:#5b8cff; --accent2:#7c5cff; --good:#36d399; --warn:#ffb020; --bad:#ff5d73;
-    --ring:rgba(91,140,255,.35);
-    --sh:0 6px 24px rgba(0,0,0,.35);
-    --r:16px; --r2:12px;
+    --bg:#0b0e14; --bg2:#121722; --card:#161c28; --card2:#1d2432;
+    --line:#2a3342; --txt:#e9eef5; --muted:#99a6ba; --faint:#687689;
+    --accent:#5b8cff; --accent2:#8b5cff; --good:#34d399; --warn:#fbbf24; --bad:#fb7185;
+    --sh:0 10px 34px rgba(0,0,0,.4); --sh2:0 4px 14px rgba(0,0,0,.28);
+    --r:18px; --r2:13px;
     --p1:#5b8cff; --p2:#2dd4bf; --p3:#f59e0b; --p4:#ec4899; --p5:#a78bfa;
   }
   [data-theme="light"]{
-    --bg:#f4f6fb; --bg2:#eef1f7; --card:#ffffff; --card2:#f7f9fd;
-    --line:#e2e7f0; --txt:#141a22; --muted:#55627a; --faint:#8793a8;
-    --sh:0 6px 20px rgba(30,50,90,.08);
+    --bg:#f3f6fc; --bg2:#eaeff7; --card:#ffffff; --card2:#f6f9fe;
+    --line:#e3e9f3; --txt:#121a26; --muted:#52627c; --faint:#8694ab;
+    --sh:0 10px 30px rgba(30,50,90,.10); --sh2:0 3px 10px rgba(30,50,90,.08);
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-       background:radial-gradient(1200px 600px at 80% -10%,rgba(124,92,255,.10),transparent 60%),
-                  radial-gradient(900px 500px at -10% 10%,rgba(91,140,255,.10),transparent 55%),var(--bg);
-       color:var(--txt);line-height:1.55;-webkit-font-smoothing:antialiased}
-  a{color:var(--accent);text-decoration:none}
-  a:hover{text-decoration:underline}
-  .wrap{max-width:1120px;margin:0 auto;padding:0 18px}
-
-  /* ---------- Header ---------- */
-  header.top{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);
-       background:color-mix(in srgb,var(--bg) 78%,transparent);border-bottom:1px solid var(--line)}
-  .nav{display:flex;align-items:center;gap:14px;padding:12px 0}
-  .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px}
-  .logo{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent2));
-        display:grid;place-items:center;font-size:18px;box-shadow:var(--sh)}
-  .nav .sp{flex:1}
-  .nav a.navlink{color:var(--muted);font-size:14px;font-weight:600;padding:6px 10px;border-radius:9px}
-  .nav a.navlink:hover{color:var(--txt);background:var(--card);text-decoration:none}
-  .iconbtn{background:var(--card);border:1px solid var(--line);color:var(--txt);width:38px;height:38px;
-      border-radius:10px;cursor:pointer;font-size:16px;display:grid;place-items:center}
-  .iconbtn:hover{border-color:var(--accent)}
-  @media(max-width:760px){.nav a.navlink{display:none}}
-
-  /* ---------- Hero ---------- */
-  .hero{padding:34px 0 10px}
-  .eyebrow{color:var(--accent);font-weight:700;font-size:13px;letter-spacing:1.5px;text-transform:uppercase}
-  h1{font-size:clamp(28px,5vw,46px);line-height:1.08;margin:10px 0 8px;letter-spacing:-.5px}
-  h1 .grad{background:linear-gradient(120deg,var(--accent),var(--p2),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
-  .sub{color:var(--muted);max-width:720px;font-size:16px}
-  .pill{display:inline-flex;gap:7px;align-items:center;background:var(--card);border:1px solid var(--line);
-      border-radius:999px;padding:6px 13px;font-size:13px;color:var(--muted);margin:14px 8px 0 0}
-  .pill b{color:var(--txt)}
-
-  /* ---------- Cards / layout ---------- */
-  section{padding:28px 0;scroll-margin-top:72px}
-  .sec-h{display:flex;align-items:baseline;gap:12px;margin:0 0 16px}
-  .sec-h h2{font-size:24px;margin:0;letter-spacing:-.3px}
-  .sec-h span{color:var(--faint);font-size:14px}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px;box-shadow:var(--sh)}
-  .grid{display:grid;gap:16px}
-
-  /* ---------- Dashboard ---------- */
-  .dash{grid-template-columns:1.3fr 1fr}
-  @media(max-width:860px){.dash{grid-template-columns:1fr}}
-  .stat-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:4px}
-  .stat{flex:1;min-width:120px;background:var(--card2);border:1px solid var(--line);border-radius:var(--r2);padding:14px}
-  .stat .n{font-size:28px;font-weight:800;line-height:1}
-  .stat .l{color:var(--muted);font-size:12.5px;margin-top:4px}
-  .bar{height:12px;background:var(--bg2);border-radius:99px;overflow:hidden;border:1px solid var(--line);margin-top:6px}
-  .bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--p2));transition:width .5s}
-  .mini{color:var(--muted);font-size:13px;margin-top:10px}
+    background:radial-gradient(1200px 600px at 82% -8%,rgba(139,92,255,.12),transparent 58%),
+               radial-gradient(1000px 520px at -8% 6%,rgba(91,140,255,.12),transparent 55%),var(--bg);
+    color:var(--txt);line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 18px}
+  h1,h2,h3,h4{letter-spacing:-.3px}
   .btn{display:inline-flex;align-items:center;gap:8px;cursor:pointer;border:1px solid var(--line);
-     background:var(--card2);color:var(--txt);padding:10px 15px;border-radius:11px;font-weight:650;font-size:14px;transition:.15s}
+    background:var(--card2);color:var(--txt);padding:10px 15px;border-radius:12px;font-weight:650;font-size:14px;
+    transition:.15s;font-family:inherit}
   .btn:hover{border-color:var(--accent);transform:translateY(-1px)}
   .btn.primary{background:linear-gradient(120deg,var(--accent),var(--accent2));border:none;color:#fff}
-  .btn.ghost{background:transparent}
-  .btn.good{border-color:var(--good);color:var(--good)}
-  .btn.sm{padding:7px 11px;font-size:13px;border-radius:9px}
-  .btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+  .btn.good{border-color:var(--good);color:var(--good)} .btn.bad{border-color:var(--bad);color:var(--bad)}
+  .btn.ghost{background:transparent} .btn.sm{padding:7px 11px;font-size:13px;border-radius:10px}
+  .btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
   .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px;box-shadow:var(--sh2)}
+  .grid{display:grid;gap:16px}
+  .chip{background:var(--card2);border:1px solid var(--line);border-radius:9px;padding:5px 10px;font-size:12.5px;color:var(--muted)}
+  .badge{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;padding:3px 9px;border-radius:99px;color:#fff}
+  .bar{height:12px;background:var(--bg2);border-radius:99px;overflow:hidden;border:1px solid var(--line)}
+  .bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--p2));transition:width .6s}
+  .sec-h{display:flex;align-items:baseline;gap:12px;margin:0 0 16px;flex-wrap:wrap}
+  .sec-h h2{font-size:24px;margin:0} .sec-h span{color:var(--faint);font-size:14px}
+  section{padding:26px 0;scroll-margin-top:76px}
+  .muted{color:var(--muted)} .tag{color:var(--faint);font-size:13px}
 
-  /* ---------- Lesson panel ---------- */
-  #lessonPanel{scroll-margin-top:72px}
+  /* ---------- GATE / landing ---------- */
+  #gate{position:fixed;inset:0;z-index:200;overflow:auto;
+    background:radial-gradient(1100px 600px at 80% -10%,rgba(139,92,255,.18),transparent 60%),
+               radial-gradient(900px 520px at -5% 0%,rgba(91,140,255,.16),transparent 55%),var(--bg)}
+  .gate-inner{max-width:900px;margin:0 auto;padding:46px 20px 60px}
+  .gbrand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:19px}
+  .logo{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));
+    display:grid;place-items:center;font-size:21px;box-shadow:var(--sh)}
+  .quote-card{margin:26px 0;padding:22px 24px;border-radius:var(--r);border:1px solid var(--line);
+    background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 14%,var(--card)),var(--card));box-shadow:var(--sh)}
+  .quote-card .q{font-size:clamp(18px,2.6vw,25px);font-weight:600;line-height:1.35}
+  .quote-card .a{color:var(--muted);margin-top:8px;font-size:14px}
+  .glabel{font-size:13px;letter-spacing:1.4px;text-transform:uppercase;color:var(--accent);font-weight:700;margin:30px 0 4px}
+  .profiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:12px;max-width:560px}
+  @media(max-width:560px){.profiles{grid-template-columns:1fr}}
+  .pcard{cursor:pointer;border:1px solid var(--line);border-radius:var(--r);padding:18px;background:var(--card);
+    transition:.15s;position:relative;overflow:hidden}
+  .pcard:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:var(--sh)}
+  .pav{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;font-size:25px;color:#fff;margin-bottom:10px}
+  .pcard h3{margin:0 0 2px;font-size:18px}
+  .pcard .prole{font-size:12.5px;color:var(--muted)}
+  .pcard .pprog{margin-top:12px}
+  .pcard .ppct{font-size:12px;color:var(--faint);margin-top:5px}
+  .gate-foot{margin-top:28px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+  /* ---------- top bar ---------- */
+  header.top{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);
+    background:color-mix(in srgb,var(--bg) 80%,transparent);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;gap:12px;padding:11px 0}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800}
+  .brand .logo{width:34px;height:34px;border-radius:10px;font-size:18px}
+  .nav .sp{flex:1}
+  .nav a.navlink{color:var(--muted);font-size:13.5px;font-weight:600;padding:6px 9px;border-radius:9px}
+  .nav a.navlink:hover{color:var(--txt);background:var(--card);text-decoration:none}
+  @media(max-width:900px){.nav a.navlink{display:none}}
+  .whoami{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);
+    border-radius:11px;padding:5px 8px 5px 6px;cursor:pointer}
+  .whoami .mini-av{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;font-size:14px;color:#fff}
+  .whoami .nm{font-size:13px;font-weight:700}
+  .iconbtn{background:var(--card);border:1px solid var(--line);color:var(--txt);width:38px;height:38px;border-radius:10px;cursor:pointer;font-size:16px;display:grid;place-items:center}
+  .iconbtn:hover{border-color:var(--accent)}
+  .viewbanner{background:color-mix(in srgb,var(--warn) 16%,transparent);border-bottom:1px solid color-mix(in srgb,var(--warn) 50%,transparent);
+    padding:8px 0;font-size:13.5px;display:none}
+  .viewbanner.show{display:block}
+
+  /* ---------- hero ---------- */
+  .hero{padding:26px 0 6px}
+  h1{font-size:clamp(26px,4.6vw,40px);line-height:1.1;margin:6px 0}
+  h1 .grad{background:linear-gradient(120deg,var(--accent),var(--p2),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .pill{display:inline-flex;gap:7px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 13px;font-size:13px;color:var(--muted);margin:12px 8px 0 0}
+  .pill b{color:var(--txt)}
+
+  /* ---------- dashboard ---------- */
+  .dash{grid-template-columns:1.3fr 1fr}
+  @media(max-width:880px){.dash{grid-template-columns:1fr}}
+  .stat-row{display:flex;gap:12px;flex-wrap:wrap}
+  .stat{flex:1;min-width:110px;background:var(--card2);border:1px solid var(--line);border-radius:var(--r2);padding:14px}
+  .stat .n{font-size:27px;font-weight:800;line-height:1}
+  .stat .l{color:var(--muted);font-size:12.5px;margin-top:4px}
+
+  /* ---------- lesson ---------- */
   .lesson-grid{grid-template-columns:1.5fr 1fr}
-  @media(max-width:860px){.lesson-grid{grid-template-columns:1fr}}
+  @media(max-width:880px){.lesson-grid{grid-template-columns:1fr}}
   .videoBox{position:relative;border-radius:var(--r2);overflow:hidden;background:#000;border:1px solid var(--line)}
   .videoBox .ar{position:relative;width:100%;padding-top:56.25%}
   .videoBox iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
   .clipbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:10px}
-  .clipbar .tag{font-size:12px;color:var(--faint)}
-  .chip{background:var(--card2);border:1px solid var(--line);border-radius:8px;padding:5px 9px;font-size:12.5px;color:var(--muted)}
-  .badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
-     padding:3px 9px;border-radius:99px;color:#fff}
-  .mission{background:var(--card2);border:1px solid var(--line);border-left:3px solid var(--accent);
-     border-radius:10px;padding:13px 15px;margin:12px 0}
+  .tinput{width:52px;background:var(--bg2);border:1px solid var(--line);border-radius:6px;color:var(--txt);font-size:12.5px;font-weight:700;padding:2px 5px;text-align:center;font-family:inherit}
+  .tinput:focus{outline:none;border-color:var(--accent)}
+  .mission{background:var(--card2);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:10px;padding:13px 15px;margin:12px 0}
   .mission h4{margin:0 0 5px;font-size:13px;letter-spacing:.4px;text-transform:uppercase;color:var(--accent)}
-  .drill h4{color:var(--p2)}.drill{border-left-color:var(--p2)}
-  .lookfor h4{color:var(--p3)}.lookfor{border-left-color:var(--p3)}
-  textarea.note{width:100%;min-height:72px;background:var(--bg2);border:1px solid var(--line);border-radius:10px;
-     color:var(--txt);padding:10px;font-family:inherit;font-size:14px;resize:vertical}
-
-  /* timer */
-  .timer{font-variant-numeric:tabular-nums;font-size:30px;font-weight:800;letter-spacing:1px}
+  .drill{border-left-color:var(--p2)} .drill h4{color:var(--p2)}
+  .lookfor{border-left-color:var(--p3)} .lookfor h4{color:var(--p3)}
+  textarea.note{width:100%;min-height:70px;background:var(--bg2);border:1px solid var(--line);border-radius:10px;color:var(--txt);padding:10px;font-family:inherit;font-size:14px;resize:vertical}
+  .timer{font-variant-numeric:tabular-nums;font-size:30px;font-weight:800}
   .timer.run{color:var(--good)}
+  .daystatus{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;padding:4px 10px;border-radius:99px}
+  .st-new{background:var(--card2);color:var(--faint)} .st-prog{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+  .st-done{background:color-mix(in srgb,var(--good) 20%,transparent);color:var(--good)}
 
-  /* ---------- Phase roadmap ---------- */
+  /* ---------- roadmap ---------- */
   .phase{margin-top:14px;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--card)}
   .phase>summary{list-style:none;cursor:pointer;padding:15px 18px;display:flex;align-items:center;gap:12px}
   .phase>summary::-webkit-details-marker{display:none}
   .phase .pn{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;font-weight:800;color:#fff;font-size:14px}
-  .phase .pt{font-weight:750}
-  .phase .pmeta{color:var(--faint);font-size:12.5px}
-  .phase .psp{flex:1}
-  .phase .pbar{width:120px}
-  .days{padding:6px 10px 14px}
+  .phase .pt{font-weight:750} .phase .pmeta{color:var(--faint);font-size:12.5px} .phase .psp{flex:1}
+  .pbar{width:120px} .days{padding:6px 10px 14px}
   .dayitem{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:10px;cursor:pointer;border:1px solid transparent}
   .dayitem:hover{background:var(--card2);border-color:var(--line)}
   .dayitem.active{background:var(--card2);border-color:var(--accent)}
   .dcheck{width:22px;height:22px;border-radius:7px;border:2px solid var(--line);display:grid;place-items:center;flex:none;font-size:13px;color:#fff}
-  .dcheck.on{background:var(--good);border-color:var(--good)}
-  .dnum{font-weight:700;font-size:13px;color:var(--faint);width:42px;flex:none}
-  .dttl{flex:1;font-size:14.5px}
-  .dmin{font-size:12px;color:var(--faint);flex:none}
+  .dcheck.on{background:var(--good);border-color:var(--good)} .dcheck.prog{border-color:var(--warn);color:var(--warn)}
+  .dnum{font-weight:700;font-size:13px;color:var(--faint);width:46px;flex:none}
+  .dttl{flex:1;font-size:14.5px} .dmin{font-size:12px;color:var(--faint);flex:none}
   @media(max-width:620px){.dmin{display:none}}
 
-  /* ---------- Studio ---------- */
-  .studio-grid{grid-template-columns:1fr 1fr}
-  @media(max-width:860px){.studio-grid{grid-template-columns:1fr}}
+  /* ---------- tabs ---------- */
+  .tabs{display:flex;gap:6px;background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:4px;width:fit-content}
+  .tab{padding:8px 16px;border-radius:9px;cursor:pointer;font-weight:650;font-size:14px;color:var(--muted)}
+  .tab.on{background:var(--card);color:var(--txt);box-shadow:var(--sh2)}
   video.preview,audio.preview{width:100%;border-radius:12px;background:#000;border:1px solid var(--line)}
   .reclamp{display:flex;align-items:center;gap:8px;color:var(--bad);font-weight:700;font-size:13px}
   .dot{width:10px;height:10px;border-radius:50%;background:var(--bad);animation:pulse 1s infinite}
   @keyframes pulse{50%{opacity:.25}}
   .check{display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed var(--line);font-size:14px}
-  .check:last-child{border:0}
-  .check input{margin-top:4px;accent-color:var(--accent);width:16px;height:16px}
+  .check:last-child{border:0} .check input{margin-top:4px;accent-color:var(--accent);width:16px;height:16px}
+  .arch-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  @media(max-width:720px){.arch-grid{grid-template-columns:1fr}}
+  .arch{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:12px}
+  .arch .meta{font-size:12px;color:var(--faint);margin-bottom:6px;display:flex;justify-content:space-between}
 
-  /* ---------- Tools ---------- */
+  /* ---------- games ---------- */
+  .gcards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:880px){.gcards{grid-template-columns:1fr}}
+  .gcard{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:16px;cursor:pointer;transition:.15s}
+  .gcard:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .gcard .gi{font-size:26px}.gcard h4{margin:8px 0 3px}.gcard p{margin:0;font-size:13px;color:var(--muted)}
+  .stage{margin-top:16px;border:1px solid var(--accent);border-radius:16px;padding:22px;background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 12%,var(--card)),var(--card));display:none}
+  .stage.show{display:block}
+  .turnpill{display:inline-flex;gap:8px;align-items:center;font-weight:800;padding:6px 14px;border-radius:99px;color:#fff;font-size:14px}
+  .prompt-big{font-size:clamp(20px,3.4vw,30px);font-weight:700;margin:14px 0;line-height:1.3}
+  .bigtimer{font-size:40px;font-weight:800;font-variant-numeric:tabular-nums}
+  .bigtimer.low{color:var(--bad)}
+
+  /* ---------- blog ---------- */
+  .blogpost{border:1px solid var(--line);border-radius:14px;padding:16px;background:var(--card2);margin-bottom:12px}
+  .blogpost h3{margin:0 0 4px} .blogpost .bmeta{font-size:12px;color:var(--faint);margin-bottom:8px}
+  .blogpost .bbody{white-space:pre-wrap;font-size:14.5px;color:var(--txt)}
+  input.tin,textarea.tin{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;color:var(--txt);padding:10px;font-family:inherit;font-size:14px}
+  textarea.tin{min-height:110px;resize:vertical}
+
+  /* ---------- tools ---------- */
+  .cols3{grid-template-columns:repeat(3,1fr)} @media(max-width:880px){.cols3{grid-template-columns:1fr}}
   .tool{display:flex;gap:12px;align-items:flex-start;padding:14px;background:var(--card2);border:1px solid var(--line);border-radius:12px}
-  .tool .ti{font-size:22px;flex:none}
-  .tool h4{margin:0 0 3px;font-size:15px}
-  .tool p{margin:0;color:var(--muted);font-size:13.5px}
+  .tool .ti{font-size:22px}.tool h4{margin:0 0 3px;font-size:15px}.tool p{margin:0;color:var(--muted);font-size:13.5px}
   .free{font-size:11px;font-weight:700;color:var(--good);border:1px solid var(--good);border-radius:99px;padding:1px 7px;margin-left:6px}
-  .cols3{grid-template-columns:repeat(3,1fr)}
-  .cols2{grid-template-columns:repeat(2,1fr)}
-  @media(max-width:860px){.cols3,.cols2{grid-template-columns:1fr}}
 
-  .note-box{background:color-mix(in srgb,var(--warn) 12%,transparent);border:1px solid color-mix(in srgb,var(--warn) 45%,transparent);
-     border-radius:12px;padding:13px 15px;font-size:13.5px;color:var(--txt)}
-  footer{border-top:1px solid var(--line);padding:26px 0;color:var(--faint);font-size:13px;margin-top:20px}
-  .kbd{font-family:ui-monospace,monospace;background:var(--card2);border:1px solid var(--line);border-radius:6px;padding:1px 6px;font-size:12px}
-  .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(20px);opacity:0;
-     background:var(--card);border:1px solid var(--accent);border-radius:12px;padding:11px 18px;box-shadow:var(--sh);
-     transition:.3s;z-index:100;font-weight:600;font-size:14px}
+  .note-box{background:color-mix(in srgb,var(--warn) 12%,transparent);border:1px solid color-mix(in srgb,var(--warn) 45%,transparent);border-radius:12px;padding:12px 15px;font-size:13.5px}
+  .info-box{background:color-mix(in srgb,var(--accent) 12%,transparent);border:1px solid color-mix(in srgb,var(--accent) 45%,transparent);border-radius:12px;padding:12px 15px;font-size:13.5px}
+  footer{border-top:1px solid var(--line);padding:26px 0;color:var(--faint);font-size:13px;margin-top:18px}
+  .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(20px);opacity:0;background:var(--card);border:1px solid var(--accent);border-radius:12px;padding:11px 18px;box-shadow:var(--sh);z-index:300;font-weight:600;font-size:14px;transition:.3s}
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-  @media print{header.top,.studio,#toolsSec,.hero .row,.iconbtn{display:none}body{background:#fff;color:#000}}
+  .ro{opacity:.5;pointer-events:none}
+  @media print{header.top,.studio,#toolsSec,#games,.iconbtn{display:none}body{background:#fff;color:#000}}
 </style>
 </head>
 <body>
 
-<header class="top"><div class="wrap nav">
-  <div class="brand"><div class="logo">🎙️</div><div>Mastering&nbsp;Communication</div></div>
-  <div class="sp"></div>
-  <a class="navlink" href="#dashboard">Dashboard</a>
-  <a class="navlink" href="#lessonPanel">Today</a>
-  <a class="navlink" href="#roadmap">90-Day Map</a>
-  <a class="navlink" href="#studio">Record Studio</a>
-  <a class="navlink" href="#toolsSec">AI Tools</a>
-  <button class="iconbtn" id="themeBtn" title="Toggle light/dark">🌙</button>
-</div></header>
-
-<div class="wrap">
-
-  <!-- HERO -->
-  <div class="hero">
-    <div class="eyebrow">A self-paced lab · built around Vinh Giang</div>
-    <h1>Become a <span class="grad">clear, confident speaker</span><br>in 60 days of practice.</h1>
-    <p class="sub">10–25 minutes a day. Each day you watch a focused clip, run one timed drill, and record yourself to review. 60 practice days, spread across a 90-day window so exams &amp; quizzes never break your streak.</p>
-    <div>
-      <span class="pill">🎯 <b>60</b>&nbsp;practice days</span>
-      <span class="pill">🗓️ <b>90-day</b>&nbsp;window</span>
-      <span class="pill">⏱️ <b>10–25</b>&nbsp;min/day</span>
-      <span class="pill">🎬 record-&amp;-review built in</span>
+<!-- ============ GATE ============ -->
+<div id="gate">
+  <div class="gate-inner">
+    <div class="gbrand"><div class="logo">🎙️</div> Mastering&nbsp;Communication</div>
+    <div class="quote-card">
+      <div class="q" id="gateQuote">—</div>
+      <div class="a" id="gateQuoteA"></div>
     </div>
-    <div class="row" style="margin-top:18px">
-      <button class="btn primary" onclick="openActive()">▶ Start / Resume today</button>
-      <button class="btn ghost" onclick="scrollToId('roadmap')">See the full roadmap</button>
+    <div class="glabel">Who's practising?</div>
+    <p class="tag" style="margin:2px 0 0">Pick your profile. Each person keeps their own progress — no sign-up. You can peek at the others' progress any time.</p>
+    <div class="profiles" id="profiles"></div>
+    <div class="gate-foot">
+      <span class="tag">Sharing with someone on another device? Use <b>Export / Import progress</b> inside the portal.</span>
     </div>
   </div>
+</div>
 
+<!-- ============ APP ============ -->
+<div id="app" style="display:none">
+<header class="top">
+  <div class="wrap nav">
+    <div class="brand"><div class="logo">🎙️</div><div>Mastering&nbsp;Communication</div></div>
+    <div class="sp"></div>
+    <a class="navlink" href="#dashboard">Progress</a>
+    <a class="navlink" href="#lessonPanel">Today</a>
+    <a class="navlink" href="#roadmap">Roadmap</a>
+    <a class="navlink" href="#studio">Studio</a>
+    <a class="navlink" href="#games">Games</a>
+    <a class="navlink" href="#blog">Blog</a>
+    <div class="whoami" onclick="openSwitch()" id="whoami" title="Switch profile / view others">
+      <div class="mini-av" id="meAv">R</div><div class="nm" id="meName">Revant</div><span style="color:var(--faint)">▾</span>
+    </div>
+    <button class="iconbtn" id="themeBtn" title="Light / dark">🌙</button>
+  </div>
+  <div class="viewbanner" id="viewBanner"><div class="wrap">👁️ You're viewing <b id="vbName"></b>'s progress (read-only). <a href="javascript:backToMe()">Back to my portal →</a></div></div>
+</header>
+
+<div class="wrap">
+  <!-- hero quote -->
+  <div class="hero">
+    <div class="quote-card" style="margin:14px 0 6px">
+      <div class="q" id="heroQuote" style="font-size:clamp(16px,2.2vw,21px)">—</div>
+      <div class="a" id="heroQuoteA"></div>
+    </div>
+  </div>
   <!-- DASHBOARD -->
   <section id="dashboard">
     <div class="grid dash">
       <div class="card">
-        <div class="sec-h"><h2>Your progress</h2><span id="dateline"></span></div>
+        <div class="sec-h"><h2 id="dashTitle">Your progress</h2><span id="dateline"></span></div>
         <div class="stat-row">
           <div class="stat"><div class="n" id="stDone">0<span style="font-size:15px;color:var(--faint)">/60</span></div><div class="l">Days completed</div></div>
-          <div class="stat"><div class="n" id="stStreak">0</div><div class="l">Current streak 🔥</div></div>
+          <div class="stat"><div class="n" id="stStreak">0</div><div class="l">Streak 🔥</div></div>
           <div class="stat"><div class="n" id="stElapsed">0</div><div class="l">Days since start</div></div>
-          <div class="stat"><div class="n" id="stMin">0</div><div class="l">Minutes practiced</div></div>
+          <div class="stat"><div class="n" id="stMin">0</div><div class="l">Minutes practised</div></div>
         </div>
-        <div class="bar"><i id="progFill"></i></div>
-        <div class="mini" id="paceLine">Set your start date to begin tracking.</div>
+        <div class="bar" style="margin-top:12px"><i id="progFill"></i></div>
+        <div class="tag" id="paceLine" style="margin-top:10px"></div>
       </div>
       <div class="card">
-        <div class="sec-h"><h2>Setup</h2><span>one-time</span></div>
-        <label class="mini" for="startDate">Start date (your Day 1)</label><br>
-        <input type="date" id="startDate" class="btn" style="margin-top:6px;color-scheme:dark">
+        <div class="sec-h"><h2>Everyone's progress</h2><span id="cloudBadge" style="font-weight:700">⚪ Local only</span></div>
+        <div id="leaderboard"></div>
         <div class="row" style="margin-top:12px">
-          <button class="btn sm" onclick="setToWed()">Use next Wed (18 Nov 2026)</button>
-          <button class="btn sm ghost" onclick="resetAll()">Reset all data</button>
+          <button class="btn sm" onclick="exportProg()">⤒ Export my progress</button>
+          <button class="btn sm ghost" onclick="importProg()">⤓ Import a share code</button>
         </div>
-        <div class="note-box" style="margin-top:14px">Everything is saved in <b>this browser</b> (localStorage). Nothing is uploaded. Host the file on GitHub Pages and your progress lives on whatever device you open it on.</div>
+        <div class="tag" style="margin-top:8px">Share your export code so someone on another device can view your progress. Recordings stay private — only stats, notes &amp; blog travel.</div>
+      </div>
+    </div>
+    <div class="card" id="setupCard" style="margin-top:16px">
+      <div class="row" style="justify-content:space-between">
+        <div>
+          <b>Start date (your Day 1)</b>
+          <div class="tag">Set it when you begin. 60 practice days spread across a 90-day window — 30 spare days for exams &amp; quizzes.</div>
+        </div>
+        <div class="row">
+          <input type="date" id="startDate" class="btn" style="color-scheme:dark">
+          <button class="btn sm" onclick="setToWed()">Use Wed 18 Nov 2026</button>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- LESSON PANEL -->
+  <!-- LESSON -->
   <section id="lessonPanel">
     <div class="sec-h"><h2 id="lpTitle">Today's session</h2><span id="lpPhase"></span></div>
     <div class="grid lesson-grid">
       <div>
         <div class="card" style="padding:14px">
-          <div class="videoBox"><div class="ar"><div id="player"></div>
-            <div id="ytFallback" style="display:none;position:absolute;inset:0;background:var(--bg2);
-                 flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;padding:20px">
-              <div style="font-size:30px">▶️</div>
-              <div style="font-weight:700">This video won't embed here</div>
-              <div class="tag" style="max-width:320px">Some videos block embedding, and the in-app preview sandbox can block all of them. It plays fine on your hosted GitHub link — or just open it directly:</div>
-              <a class="btn primary" id="ytFallbackLink" target="_blank" rel="noopener">Watch on YouTube ↗</a>
-            </div>
+          <div class="videoBox"><div class="ar">
+            <iframe id="player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="origin-when-cross-origin"></iframe>
           </div></div>
           <div class="clipbar">
             <button class="btn sm primary" onclick="playClip()">▶ Play my clip</button>
-            <button class="btn sm" onclick="playFull()">Play full video</button>
-            <a class="btn sm" id="ytWatch" target="_blank" rel="noopener">Watch on YouTube ↗</a>
-            <span class="chip">In <b id="clipInLbl">0:00</b></span>
-            <button class="btn sm ghost" onclick="setIn()">Set in ⤓</button>
-            <span class="chip">Out <b id="clipOutLbl">end</b></span>
-            <button class="btn sm ghost" onclick="setOut()">Set out ⤒</button>
+            <button class="btn sm" onclick="playFull()">Play full</button>
+            <a class="btn sm" id="ytWatch" target="_blank" rel="noopener">YouTube ↗</a>
+            <span class="chip">In <input id="inF" class="tinput" value="0:00" onchange="onTimeField('start',this.value)"></span>
+            <span class="chip">Out <input id="outF" class="tinput" value="end" onchange="onTimeField('end',this.value)"></span>
             <button class="btn sm ghost" onclick="clearClip()">Clear</button>
           </div>
           <div class="clipbar">
-            <span class="tag">Can't find it? </span>
-            <a class="btn sm" id="ytSearch" target="_blank" rel="noopener">🔎 Find today's exact video on Vinh's channel ↗</a>
+            <span class="tag">Prefer his latest on this topic?</span>
+            <a class="btn sm" id="ytSearch" target="_blank" rel="noopener">🔎 Find today's exact video ↗</a>
           </div>
-          <p class="tag" style="margin:8px 2px 0">Tip: play, then tap <b>Set in</b> / <b>Set out</b> at the moment the useful part starts and ends. Your clip points are saved per day, so tomorrow you jump straight to the good bit.</p>
+          <p class="tag" style="margin:8px 2px 0">Type start/end as <b>m:ss</b> (e.g. <b>4:30</b>) then <b>Play my clip</b> — it plays only that segment. Saved per day.</p>
         </div>
       </div>
       <div>
         <div class="card">
+          <div class="row" style="justify-content:space-between;margin-bottom:6px">
+            <span class="daystatus st-new" id="dayStatus">Not started</span>
+            <span class="tag" id="dayDates"></span>
+          </div>
           <div class="mission lookfor"><h4>🎧 Watch for</h4><div id="lpLook"></div></div>
           <div class="mission"><h4>🎯 Today's mission</h4><div id="lpMission"></div></div>
           <div class="mission drill"><h4>🏋️ Timed drill</h4><div id="lpDrill"></div></div>
@@ -258,21 +315,19 @@
           <div class="card" style="background:var(--bg2);text-align:center;margin:12px 0">
             <div class="timer" id="timer">00:00</div>
             <div class="row" style="justify-content:center;margin-top:8px">
-              <button class="btn sm" id="tStart" onclick="timerStart()">Start drill timer</button>
+              <button class="btn sm" id="tStart" onclick="timerStart()">Start timer</button>
               <button class="btn sm ghost" onclick="timerStop()">Pause</button>
               <button class="btn sm ghost" onclick="timerReset()">Reset</button>
               <span class="chip">target <b id="tTarget">15</b> min</span>
             </div>
           </div>
 
-          <label class="mini">Reflection — what felt off? one thing to fix tomorrow</label>
-          <textarea class="note" id="dayNote" placeholder="e.g. too many 'ums' when I lost my place; pace sped up when nervous..."></textarea>
-          <div class="row" style="margin-top:12px;justify-content:space-between">
-            <div class="row">
-              <button class="btn sm" onclick="prevDay()">← Prev</button>
-              <button class="btn sm" onclick="nextDay()">Next →</button>
-            </div>
-            <button class="btn good" id="doneBtn" onclick="toggleDone()">✓ Mark day complete</button>
+          <label class="tag">Reflection — one thing to fix tomorrow</label>
+          <textarea class="note" id="dayNote" placeholder="e.g. too many 'ums' when I lost my place..."></textarea>
+
+          <div id="dayActions" class="row" style="margin-top:12px;justify-content:space-between">
+            <div class="row"><button class="btn sm" onclick="prevDay()">← Prev</button><button class="btn sm" onclick="nextDay()">Next →</button></div>
+            <div class="row" id="doneArea"></div>
           </div>
         </div>
       </div>
@@ -281,83 +336,200 @@
 
   <!-- ROADMAP -->
   <section id="roadmap">
-    <div class="sec-h"><h2>The 90-day roadmap</h2><span>60 practice days · 5 phases · tap any day to load it</span></div>
-    <div class="note-box">Miss a day for an exam or quiz? Nothing breaks. You only consume a lesson when you mark it <b>complete</b>, so your 60 sessions naturally stretch across ~90 days. Use <b>"Skip / rest day"</b> inside a lesson to log a gap without losing a module.</div>
+    <div class="sec-h"><h2>The 90-day roadmap</h2><span>60 practice days · tap any day to open it</span></div>
+    <div class="note-box">You only "spend" a lesson when you mark it <b>complete</b>, so your 60 sessions stretch across ~90 days. A started day shows amber ⏳ — finish it later; one lesson can span two days thanks to the 30-day buffer.</div>
     <div id="roadmapWrap"></div>
   </section>
 
   <!-- STUDIO -->
   <section id="studio" class="studio">
-    <div class="sec-h"><h2>🎬 Record &amp; Review studio</h2><span>Vinh's #1 method — self-audit, right here</span></div>
-    <div class="note-box" style="margin-bottom:14px">Record a <b>5-minute improvised</b> talk, leave it for a day, then review it <b>three ways</b>: audio-only (voice), muted video (body), and transcript (filler words). Recordings stay on your device during the session — hit <b>Download</b> to keep them. Nothing is uploaded.</div>
-    <div class="grid studio-grid">
-      <div class="card">
-        <h4 style="margin:0 0 8px">Recorder</h4>
-        <div class="row">
-          <button class="btn primary" id="recVideo" onclick="startRec(true)">● Record video</button>
-          <button class="btn" id="recAudio" onclick="startRec(false)">● Record audio only</button>
-          <button class="btn bad" id="recStop" onclick="stopRec()" disabled>■ Stop</button>
-        </div>
-        <div class="row" id="recStatus" style="margin-top:10px;min-height:22px"></div>
-        <video class="preview" id="livePreview" muted playsinline style="margin-top:10px;display:none"></video>
-        <div id="playbackWrap" style="margin-top:12px;display:none">
-          <h4 style="margin:0 0 6px">Your recording</h4>
-          <video class="preview" id="playback" controls playsinline style="display:none"></video>
-          <audio class="preview" id="playbackA" controls style="display:none"></audio>
-          <div class="row" style="margin-top:10px">
-            <a class="btn sm good" id="dlBtn" download>⤓ Download recording</a>
-            <span class="chip">Review it <b>tomorrow</b>, not now 😉</span>
+    <div class="sec-h"><h2>🎬 Record &amp; Review studio</h2><span>Vinh's #1 method · your private archive</span></div>
+    <div id="studioRO" class="note-box" style="display:none;margin-bottom:12px">👁️ You're viewing someone else's portal — the recording studio and archive are private to each person.</div>
+    <div id="studioBody">
+      <div class="tabs" style="margin-bottom:14px">
+        <div class="tab on" id="tabRec" onclick="studTab('rec')">● Record</div>
+        <div class="tab" id="tabArch" onclick="studTab('arch')">🗄️ Archive</div>
+        <div class="tab" id="tabMethod" onclick="studTab('method')">📋 Review method</div>
+      </div>
+
+      <div id="paneRec" class="grid" style="grid-template-columns:1fr 1fr;gap:16px">
+        <div class="card">
+          <h4 style="margin:0 0 8px">Recorder</h4>
+          <div class="row">
+            <button class="btn primary" id="recVideo" onclick="startRec(true)">● Video</button>
+            <button class="btn" id="recAudio" onclick="startRec(false)">● Audio only</button>
+            <button class="btn bad" id="recStop" onclick="stopRec()" disabled>■ Stop</button>
+          </div>
+          <div class="row" id="recStatus" style="margin-top:10px;min-height:22px"></div>
+          <video class="preview" id="livePreview" muted playsinline style="margin-top:10px;display:none"></video>
+          <div id="playbackWrap" style="margin-top:12px;display:none">
+            <h4 style="margin:0 0 6px">New recording</h4>
+            <video class="preview" id="playback" controls playsinline style="display:none"></video>
+            <audio class="preview" id="playbackA" controls style="display:none"></audio>
+            <label class="tag" style="margin-top:8px;display:block">Remark (what day / what to check tomorrow)</label>
+            <input class="tin" id="recRemark" placeholder="e.g. Day 1 baseline — review pace & fillers">
+            <div class="row" style="margin-top:10px">
+              <button class="btn sm good" onclick="saveToArchive()">💾 Save to my archive</button>
+              <a class="btn sm ghost" id="dlBtn" download>⤓ Download</a>
+            </div>
           </div>
         </div>
+        <div class="card">
+          <h4 style="margin:0 0 8px">3-way review checklist</h4>
+          <b style="color:var(--p1);font-size:13px">1 · Audio only (eyes closed)</b>
+          <div class="check"><input type="checkbox"> Monotone or real melody &amp; variety?</div>
+          <div class="check"><input type="checkbox"> Pace — too fast? enough pauses?</div>
+          <div class="check"><input type="checkbox"> Confident downward pitch at line-ends?</div>
+          <b style="color:var(--p2);font-size:13px;display:block;margin-top:10px">2 · Muted video</b>
+          <div class="check"><input type="checkbox"> Posture open, hands purposeful?</div>
+          <div class="check"><input type="checkbox"> Face alive, eyes engaged?</div>
+          <div class="check"><input type="checkbox"> Nervous habits (sway, face-touch)?</div>
+          <b style="color:var(--p3);font-size:13px;display:block;margin-top:10px">3 · Transcript</b>
+          <div class="check"><input type="checkbox"> Highlight every um / uh / like / so</div>
+          <div class="check"><input type="checkbox"> Where do I ramble or trail off?</div>
+          <div class="check"><input type="checkbox"> 3 power words to land harder</div>
+        </div>
       </div>
-      <div class="card">
-        <h4 style="margin:0 0 8px">3-way review checklist</h4>
-        <b style="color:var(--p1);font-size:13px">1 · Audio only (eyes closed)</b>
-        <div class="check"><input type="checkbox"> Vocal variety — am I monotone or do I use melody?</div>
-        <div class="check"><input type="checkbox"> Pace — too fast when nervous? enough pauses?</div>
-        <div class="check"><input type="checkbox"> Do I finish sentences on a confident downward pitch?</div>
-        <b style="color:var(--p2);font-size:13px;display:block;margin-top:10px">2 · Muted video (watch, no sound)</b>
-        <div class="check"><input type="checkbox"> Posture open &amp; grounded? hands visible &amp; purposeful?</div>
-        <div class="check"><input type="checkbox"> Facial expression alive? eyes engaged?</div>
-        <div class="check"><input type="checkbox"> Any non-functional habits (sway, face-touch, fidget)?</div>
-        <b style="color:var(--p3);font-size:13px;display:block;margin-top:10px">3 · Transcript (text only)</b>
-        <div class="check"><input type="checkbox"> Highlight every "um / uh / like / you know / so"</div>
-        <div class="check"><input type="checkbox"> Where do I ramble or trail off?</div>
-        <div class="check"><input type="checkbox"> Circle 3 power words I could land harder</div>
-        <p class="tag" style="margin-top:8px">Get a free transcript from any tool in the AI section below, then paste it somewhere and highlight.</p>
+
+      <div id="paneArch" style="display:none">
+        <div class="info-box" style="margin-bottom:12px">Your recordings are saved <b>on this device</b> (in the browser) so you can replay old takes and compare. Big files use a lot of space — keep <b>Download</b> copies of the ones you want forever.</div>
+        <div id="archEmpty" class="tag">No recordings yet. Record a baseline in the <b>Record</b> tab to start your archive.</div>
+        <div class="arch-grid" id="archGrid"></div>
+      </div>
+
+      <div id="paneMethod" style="display:none">
+        <div class="card">
+          <h4 style="margin-top:0">Vinh's record-and-review method</h4>
+          <p class="muted" style="font-size:14px">Record a <b>5-minute improvised</b> talk. <b>Don't watch it today</b> — you'll be too harsh. Tomorrow, review it three separate ways:</p>
+          <ol style="font-size:14.5px;line-height:1.7">
+            <li><b>Audio only</b> (eyes shut) → judge your voice: melody, pace, pauses, pitch.</li>
+            <li><b>Muted video</b> → judge your body: posture, gestures, face, nervous tells.</li>
+            <li><b>Transcript</b> → judge your words: highlight fillers, rambles, weak words.</li>
+          </ol>
+          <p class="tag">Fix ONE thing at a time. Re-record every ~12 days and compare against your Day-1 baseline in the archive.</p>
+        </div>
       </div>
     </div>
+  </section>
+
+  <!-- GAMES -->
+  <section id="games">
+    <div class="sec-h"><h2>🎲 Speaking games</h2><span>play solo or pass-the-phone with Rajat &amp; co.</span></div>
+    <p class="tag" style="margin-top:-6px">Low-pressure drills that build the exact muscles — thinking on your feet, storytelling, killing fillers. Pick a game; it picks whose turn and a random prompt, then counts you down.</p>
+    <div class="gcards" id="gameCards"></div>
+    <div class="stage" id="gameStage"></div>
+  </section>
+
+  <!-- BLOG -->
+  <section id="blog">
+    <div class="sec-h"><h2>📝 Communication journal</h2><span id="blogOwner"></span></div>
+    <p class="tag" style="margin-top:-6px">Write what you're learning — a tip from Vinh, a win, a flop, a line that worked. Writing it down makes it stick, and the others can read your notes.</p>
+    <div id="blogEditor" class="card" style="margin-bottom:14px">
+      <input class="tin" id="blogTitle" placeholder="Post title — e.g. 'The pause finally clicked'">
+      <textarea class="tin" id="blogBody" style="margin-top:8px" placeholder="What did you learn or practise today?"></textarea>
+      <div class="row" style="margin-top:10px">
+        <button class="btn sm primary" onclick="addPost()">Publish entry</button>
+        <button class="btn sm ghost" id="blogCancel" onclick="cancelEdit()" style="display:none">Cancel edit</button>
+      </div>
+    </div>
+    <div id="blogList"></div>
   </section>
 
   <!-- TOOLS -->
   <section id="toolsSec">
-    <div class="sec-h"><h2>Free tools &amp; AI to review your speaking</h2><span>check each site for its current free tier</span></div>
+    <div class="sec-h"><h2>Free AI tools to review your speaking</h2><span>check each site's current free tier</span></div>
     <div class="grid cols3">
-      <a class="tool" href="https://yoodli.ai" target="_blank" rel="noopener"><div class="ti">🤖</div><div><h4>Yoodli<span class="free">free tier</span></h4><p>AI speech coach — flags filler words, pacing, and gives private feedback on practice recordings.</p></div></a>
-      <a class="tool" href="https://www.descript.com" target="_blank" rel="noopener"><div class="ti">✂️</div><div><h4>Descript<span class="free">free tier</span></h4><p>Auto-transcribe your recording and one-click find every "um" — perfect for the transcript review.</p></div></a>
-      <a class="tool" href="https://otter.ai" target="_blank" rel="noopener"><div class="ti">📝</div><div><h4>Otter.ai<span class="free">free tier</span></h4><p>Fast free transcription. Export the text, then highlight filler words and rambles by hand.</p></div></a>
-      <a class="tool" href="https://claude.ai" target="_blank" rel="noopener"><div class="ti">🧠</div><div><h4>Claude<span class="free">free tier</span></h4><p>Paste your transcript and ask for a filler-word count, clarity score, and 3 concrete fixes.</p></div></a>
-      <a class="tool" href="https://chat.openai.com" target="_blank" rel="noopener"><div class="ti">💬</div><div><h4>ChatGPT<span class="free">free tier</span></h4><p>Rehearse Q&amp;A, get impromptu-speaking prompts, or have it role-play a tough audience.</p></div></a>
-      <a class="tool" href="https://www.poised.com" target="_blank" rel="noopener"><div class="ti">🎚️</div><div><h4>Poised<span class="free">free tier</span></h4><p>Real-time coaching on calls — pacing, filler words, energy. Great for the online-communication phase.</p></div></a>
+      <a class="tool" href="https://yoodli.ai" target="_blank" rel="noopener"><div class="ti">🤖</div><div><h4>Yoodli<span class="free">free</span></h4><p>AI coach — flags filler words, pacing &amp; gives private feedback.</p></div></a>
+      <a class="tool" href="https://www.descript.com" target="_blank" rel="noopener"><div class="ti">✂️</div><div><h4>Descript<span class="free">free</span></h4><p>Auto-transcribe &amp; one-click find every "um".</p></div></a>
+      <a class="tool" href="https://otter.ai" target="_blank" rel="noopener"><div class="ti">📝</div><div><h4>Otter.ai<span class="free">free</span></h4><p>Fast transcription to highlight fillers by hand.</p></div></a>
+      <a class="tool" href="https://claude.ai" target="_blank" rel="noopener"><div class="ti">🧠</div><div><h4>Claude<span class="free">free</span></h4><p>Paste a transcript; ask for a filler count &amp; 3 fixes.</p></div></a>
+      <a class="tool" href="https://chat.openai.com" target="_blank" rel="noopener"><div class="ti">💬</div><div><h4>ChatGPT<span class="free">free</span></h4><p>Rehearse Q&amp;A or role-play a tough audience.</p></div></a>
+      <a class="tool" href="https://www.poised.com" target="_blank" rel="noopener"><div class="ti">🎚️</div><div><h4>Poised<span class="free">free</span></h4><p>Real-time coaching on calls — pacing, fillers, energy.</p></div></a>
     </div>
-    <p class="tag" style="margin-top:12px">Your phone's <b>voice recorder</b> and <b>camera</b> are the only must-haves — Vinh built his whole method on exactly that. The tools above just speed up the review.</p>
   </section>
 
   <footer>
-    <div><b>Mastering Communication</b> — a personal practice portal. Lessons are inspired by the free public teaching of <a href="https://www.youtube.com/@askvinh" target="_blank" rel="noopener">Vinh Giang (@askvinh)</a>; all videos play from his official YouTube channel. This portal is a study aid, not affiliated with or endorsed by Vinh Giang.</div>
-    <div style="margin-top:8px">Built for Revant · host free on GitHub Pages · progress saved locally in your browser.</div>
+    <div><b>Mastering Communication</b> — a personal practice portal built on the free public teaching of <a href="https://www.youtube.com/@askvinh" target="_blank" rel="noopener">Vinh Giang (@askvinh)</a>. Study aid only; not affiliated with or endorsed by Vinh Giang. Game formats inspired by common improv &amp; public-speaking exercises.</div>
+    <div style="margin-top:8px">Progress &amp; recordings are stored in your own browser. Built for Revant · host free on GitHub Pages.</div>
   </footer>
+</div>
 </div>
 
 <div class="toast" id="toast"></div>
 
+<!-- hidden switch sheet -->
+<div id="switchSheet" style="display:none;position:fixed;inset:0;z-index:150;background:rgba(0,0,0,.55);backdrop-filter:blur(4px)">
+  <div style="max-width:440px;margin:12vh auto;padding:0 16px">
+    <div class="card">
+      <div class="sec-h"><h2 style="font-size:20px">Switch / view</h2><span>no password needed</span></div>
+      <div id="switchList"></div>
+      <div class="row" style="margin-top:12px;justify-content:flex-end"><button class="btn sm ghost" onclick="closeSwitch()">Close</button></div>
+    </div>
+  </div>
+</div>
+
 <script>
 /* ============================================================
-   CURRICULUM  — 60 practice days, Vinh Giang framework
-   vid = a real video on his channel used as the day's anchor;
-   topic = pre-fills a YouTube search so you can grab his exact
-           latest video on that sub-skill.
+   PROFILES · QUOTES · GAMES · PHASES
    ============================================================ */
+/* ============================================================
+   ☁️ CLOUD SYNC CONFIG  —  paste your free Firebase config below.
+   Leave it exactly as-is (empty) to stay in local-only mode.
+   Setup steps are in the README and in the app's "Cloud sync" card.
+   ============================================================ */
+const FIREBASE_CONFIG = {
+  // apiKey:      "PASTE_HERE",
+  // authDomain:  "yourproject.firebaseapp.com",
+  // databaseURL: "https://yourproject-default-rtdb.firebaseio.com",
+  // projectId:   "yourproject",
+  // appId:       "PASTE_HERE"
+};
+
+const PROFILES=[
+  {id:"revant",name:"Revant Kalra",role:"Admin · Main user",av:"R",color:"linear-gradient(135deg,#5b8cff,#8b5cff)"},
+  {id:"viewer",name:"Viewer",      role:"Views Revant's progress (read-only)",av:"👁️",color:"linear-gradient(135deg,#2dd4bf,#3b82f6)",viewerOf:"revant"},
+];
+function myHome(){const p=prof(ME);return (p&&p.viewerOf)?p.viewerOf:ME;}
+const QUOTES=[
+  ["The way we communicate with others and with ourselves ultimately determines the quality of our lives.","Tony Robbins"],
+  ["Your voice can change the world.","Barack Obama"],
+  ["Words are, of course, the most powerful drug used by mankind.","Rudyard Kipling"],
+  ["The most important thing in communication is hearing what isn't said.","Peter Drucker"],
+  ["It's not what you say, it's how you say it.","— on vocal delivery"],
+  ["Speak clearly, if you speak at all; carve every word before you let it fall.","Oliver Wendell Holmes"],
+  ["People don't care about your content until they know you care about them.","Vinh Giang"],
+  ["The risk is not going far enough.","Vinh Giang"],
+  ["Communication is a skill you can learn. It's like riding a bicycle or typing.","Brian Tracy"],
+  ["Silence is a source of great strength.","Lao Tzu"],
+  ["Stop filling silence. Start using it.","— on the power of the pause"],
+  ["To be persuasive we must be believable; to be believable we must be credible.","Edward R. Murrow"],
+  ["Courage is what it takes to stand up and speak.","Winston Churchill"],
+  ["You don't have to be great to start, but you have to start to be great.","Zig Ziglar"],
+  ["A small deliberate change, repeated daily, becomes a new identity.","— Kaizen, on practice"],
+  ["The quality of your communication is the quality of your life.","— daily reminder"],
+  ["If you can speak, you can influence. If you can influence, you can change lives.","Rob Brown"],
+  ["Confidence comes from preparation, not personality.","— on public speaking"],
+  ["Tell me the facts and I'll learn. Tell me the truth and I'll believe. Tell me a story and it will live in my heart.","Native American proverb"],
+  ["Your body communicates far more than your words.","Vinh Giang"],
+  ["The single biggest problem in communication is the illusion that it has taken place.","George Bernard Shaw"],
+  ["Make sure you have finished speaking before your audience has finished listening.","Dorothy Sarnoff"],
+  ["Practice doesn't make perfect. Practice makes permanent — so practise well.","— on deliberate reps"],
+  ["Reality is negotiable.","Vinh Giang"],
+];
+const GAMES=[
+  {id:"impromptu",name:"Impromptu Topic",icon:"🎯",desc:"A random topic. Speak for 60 seconds, no prep.",time:60,
+   prompts:["A skill everyone should learn","Why mornings are underrated","The best advice I ever ignored","If I ran my college for a day","A trend I don't understand","The most useful app on my phone","Something I changed my mind about","Why failure is a good teacher","My ideal weekend","A cause worth fighting for","The future of money","Convince me to visit your hometown","A book, film or video that changed me","What makes a great leader","Why boredom is good for you","The best purchase under ₹500","A habit that changed my life","Why handwriting still matters","The most overrated thing in life","My favourite way to waste time","What I'd tell my 15-year-old self","A rule I think should exist","The best meal I've ever had","Why we should talk to strangers","A skill that looks easy but isn't","The last thing that made me laugh","What success means to me","A place everyone should see once","Why saying no is powerful","The invention I'm most grateful for","If I had an extra hour every day","A small thing that makes a big difference","Why first impressions matter","The hardest lesson I've learned","What I wish schools taught","My relationship with social media","Why kindness is underrated","A risk that was worth it","The best compliment I've received","Would I want to be famous?","A tradition worth keeping","The future of work","Why we procrastinate","My definition of a good friend","Something I'm curious about lately","The role of luck in success","Why travel changes you","What I'd do with a billion rupees","The best teacher I ever had","Why we should read more fiction","A piece of tech I'd ban","My go-to way to beat stress","Why competition can be healthy","The most useful thing I learned online","A moment I felt truly proud","Why patience is a superpower","What makes a city great to live in","Why we remember some days forever","A myth people still believe","The best decision I made this year","Why listening beats talking","What money can't buy","The future of education","Why we need more public speaking","A skill I want to master next","The power of a good routine","Why gratitude works","A conversation that changed me","What I'd put in a time capsule","Why confidence is a skill, not a gift","The app I couldn't live without","A goal I'm chasing right now"]},
+  {id:"expert",name:"The Instant Expert",icon:"🎓",desc:"Speak as a world expert on an absurd topic. 45s.",time:45,
+   prompts:["the science of untying shoelaces","professional cloud-watching","the history of the high-five","advanced sock management","the psychology of queue-jumping","elite pizza-folding technique","the ethics of the last samosa","competitive napping","the art of the awkward wave","gourmet instant-noodle cuisine","the lost language of emojis","industrial-grade procrastination","the aerodynamics of paper planes","the philosophy of the snooze button","championship thumb wrestling","the etiquette of group chats","the biology of the Monday feeling","advanced umbrella combat","the economics of free samples","the secret life of office staplers","professional hide-and-seek strategy","the art of pretending to listen","extreme couch-cushion engineering","the diplomacy of sharing an armrest","the history of the eye-roll","competitive gift-wrapping","the physics of diving into bed","the psychology of 'just one more episode'","the craft of the dramatic sigh","elite-level people-watching","the science of finding the TV remote","the strategic bathroom break","gourmet midnight-snack pairing","the ethics of double-dipping","professional staring-contest tactics","the history of the fist bump","advanced blanket-stealing","the lost art of the handwritten note","competitive mall speed-walking","the psychology of 'reply all'","engineering a wobble-free table","the diplomacy of splitting the bill","the art of looking busy","extreme library whispering","the perfect nap position","the history of the thumbs-up","professional daydreaming","elevator-silence etiquette","advanced popcorn distribution","the philosophy of the unread notification","the art of the graceful exit","championship excuse-making","the biology of being 'hangry'","the craft of the perfect pause","choosing the perfect Wi-Fi name","the history of the group selfie","professional couch-potato training","the diplomacy of a shared playlist","the art of the confident guess","the psychology of 'I'll start Monday'"]},
+  {id:"nofiller",name:"No-Um Challenge",icon:"🚫",desc:"Speak 60s on a topic. Tap every time you slip an um/like/so.",time:60,counter:true,
+   prompts:["Describe your daily routine","Explain how to make your favourite dish","Pitch your dream startup","Tell us about your best friend","Explain your field of study to a 10-year-old","Describe your city to a tourist","Talk about a goal for this year","Explain why you chose your career","Describe your perfect holiday","Explain how to ride a bicycle","Talk about your favourite festival","Describe your morning commute","Explain a hobby you love","Talk about your role model","Describe your dream home","Explain how the internet works, simply","Recommend a movie and why","Describe your ideal job","Explain a skill you're proud of","Talk about your family","Describe a memorable trip","Explain why exercise matters","Talk about your favourite season","Describe how to stay organised","Explain a news story you followed","Talk about your biggest inspiration","Describe your study method","Explain how to make friends","Talk about a challenge you overcame","Describe your favourite place to relax","Explain how money works, simply","Describe your perfect day","Explain how to give good feedback","Share a lesson from a mistake","Describe your favourite app and why","Explain a family tradition","Talk about what motivates you","Explain why reading is useful","Talk about your dream destination","Describe a person you admire","Explain how to cook rice","Talk about your weekend plans","Describe your college life","Explain how to save money","Talk about a book you enjoyed","Describe your favourite food","Explain how to stay calm under pressure","Talk about your proudest moment","Describe your neighbourhood","Explain how to introduce yourself well","Talk about a cause you care about","Describe where you'll be in 5 years","Explain how to make tea","Talk about something new you learned","Explain how to plan your week","Describe your ideal teammate"]},
+  {id:"story",name:"One-Line Story",icon:"📖",desc:"Pass-and-play: each player adds ONE sentence to a shared story.",time:30,story:true,
+   prompts:["It started the morning the lift refused to open...","Nobody noticed the extra chair in the meeting room, until...","The package had no sender, only the word 'FINALLY' on top...","On the last day of exams, the clock began running backwards...","She opened her umbrella indoors and the rain followed...","The elevator stopped between floors, and the lights flickered twice...","He found a door in his house he'd never seen before...","The whole city woke up to find the internet had vanished...","A stray dog kept leaving notes on the doorstep...","The new intern knew everyone's secrets on day one...","At midnight, every clock in town struck thirteen...","The map led them to the exact centre of nowhere...","Her reflection waved first...","The train arrived, but no one got off...","A single red balloon followed him to work every day...","The library book whispered when it was overdue...","They dug up the time capsule a year too early...","The Wi-Fi password turned out to be a warning...","Every photo in the album had one extra person...","The vending machine only accepted secrets...","On the roof they found a chair facing the sunrise, still warm...","The lights went out, and the applause began...","A letter arrived addressed to who you'll become...","The last message said: 'look behind you' — so they did...","The power cut lasted exactly as long as the story...","The lost key fit a door that wasn't there yesterday...","Everyone in the room had the same dream last night...","The clock tower chimed a number that doesn't exist..."]},
+  {id:"rant",name:"30-Second Pitch",icon:"📣",desc:"Passionately sell a random everyday object. 30s.",time:30,
+   prompts:["a paperclip","a pair of mismatched socks","last week's cold coffee","a broken umbrella","a rubber duck","a single AA battery","a 2015 calendar","an empty jam jar","a squeaky chair","a half-used eraser","a tangled pair of earphones","a lone chopstick","a dried-up pen","a wobbly stool","a cracked phone case","a melting ice cube","an expired coupon","a one-legged action figure","a flat football","a blank sticky note","a used tea bag","a dead houseplant","a key to an unknown lock","a broken zipper","a single glove","a nearly empty glue stick","a bent spoon","a faded receipt","a scratched CD","a cushion with no stuffing","a pen that writes sometimes","an umbrella that won't close","a lost puzzle piece","a stretched-out hair tie","a lukewarm water bottle","a torn kite","a button with no shirt","a half-charged power bank","a dull pencil","a leaky water gun","a creaky door hinge","a chipped mug","a jammed stapler","a shoe with no laces","a wilted bouquet","a static-filled radio","a worn-out doormat","a slow ceiling fan","a rusty bicycle bell","an overripe banana","a blurry pair of glasses","a deflated balloon","a frayed charger","a wobbly table","a mystery remote","a sock with a hole"]},
+  {id:"slide",name:"Mystery Slides",icon:"🖼️",desc:"PowerPoint karaoke: improvise a talk as random 'slides' flip every 15s.",time:75,slides:true,
+   prompts:["📈 Growth","🦖 Our mascot","🌮 Phase 2","🤯 The problem","🚀 Launch day","🧩 The solution","🏆 Results","🙋 Q&A","💡 The big idea","🔥 Why now","🌍 The market","🤝 Our team","📉 What went wrong","🎯 The goal","🧪 The experiment","🛠️ How it works","💰 The ask","📊 The numbers","🗺️ The roadmap","🎉 The win","🚧 The challenge","🔮 The future","📣 Call to action","🙏 Thank you","🐢 Plan B","🎢 The pivot","🧠 Lessons learned","⚡ The secret sauce"]},
+];
 const PHASES=[
   {id:1,name:"Vocal Foundations & Baseline",color:"var(--p1)"},
   {id:2,name:"Clarity & Fluency",color:"var(--p2)"},
@@ -365,7 +537,6 @@ const PHASES=[
   {id:4,name:"Connection & Storytelling",color:"var(--p4)"},
   {id:5,name:"Performance & Mastery",color:"var(--p5)"},
 ];
-// anchor videos (verified IDs on @askvinh / linked)
 const V={
   vocal9:"hIFCxzdSGfU",      // 9-min speak-clearer breathing exercise (your link)
   master:"g0kzHjmvuYQ",      // 13 Years of Communication in 53 min
@@ -630,248 +801,437 @@ const DAYS=[
 ];
 
 /* ============================================================
-   STATE
+   PROFILE STATE
    ============================================================ */
-const LS="mc_portal_v1";
-let S=load();
-function load(){try{return JSON.parse(localStorage.getItem(LS))||def()}catch(e){return def()}}
-function def(){return{done:{},notes:{},clips:{},start:null,active:0,minutes:0}}
-function save(){localStorage.setItem(LS,JSON.stringify(S))}
+const $=id=>document.getElementById(id);
+let ME=localStorage.getItem('mc2_me');
+let VIEW=ME, S=null, activeDay=0, editId=null;
+const dataKey=id=>'mc2_data_'+id;
+function defData(){return{done:{},started:{},notes:{},clips:{},blog:[],start:null,minutes:0,active:0};}
+function getData(id){try{return Object.assign(defData(),JSON.parse(localStorage.getItem(dataKey(id))||'{}'));}catch(e){return defData();}}
+function putData(id,d){localStorage.setItem(dataKey(id),JSON.stringify(d));}
+function canEdit(){return VIEW===ME;}
+let CLOUD=false, PCACHE={}, RCACHE={}, fdb=null, saveTimer=null;
+const CLOUD_REC_CAP=7*1024*1024; // ~7MB blob cap for cloud-stored recordings
+function blobToDataURL(b){return new Promise(r=>{const fr=new FileReader();fr.onload=()=>r(fr.result);fr.readAsDataURL(b);});}
+function save(){if(!canEdit())return;putData(VIEW,S);
+  if(CLOUD&&fdb){clearTimeout(saveTimer);saveTimer=setTimeout(()=>{try{fdb.ref('progress/'+ME).set(JSON.parse(JSON.stringify(S)));}catch(e){}},400);}}
+function cloudEnabled(){return FIREBASE_CONFIG&&FIREBASE_CONFIG.databaseURL;}
+function loadScript(src){return new Promise((res,rej)=>{const s=document.createElement('script');s.src=src;s.onload=res;s.onerror=rej;document.head.appendChild(s);});}
+async function cloudInit(){
+  if(!cloudEnabled()){setCloudBadge('local');return;}
+  setCloudBadge('connecting');
+  try{
+    await loadScript('https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js');
+    await loadScript('https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js');
+    firebase.initializeApp(FIREBASE_CONFIG);fdb=firebase.database();CLOUD=true;setCloudBadge('on');
+    PROFILES.forEach(p=>{
+      fdb.ref('progress/'+p.id).on('value',snap=>{PCACHE[p.id]=snap.val()||null;onCloud(p.id);});
+      fdb.ref('recordings/'+p.id).on('value',snap=>{RCACHE[p.id]=snap.val()||{};if($('paneArch').style.display!=='none')renderArchive();});
+    });
+  }catch(e){CLOUD=false;setCloudBadge('error');}
+}
+function onCloud(id){
+  if($('gate').style.display!=='none'){renderGate();return;}
+  renderLeaderboard();
+  if(id===VIEW&&VIEW!==ME){S=PCACHE[id]?Object.assign(defData(),PCACHE[id]):defData();
+    loadDay(S.active||0,true);renderRoadmap();updateStats();renderBlog();}
+  else if(id===ME&&VIEW===ME&&PCACHE[id]){S=Object.assign(defData(),PCACHE[id]);
+    putData(ME,S);renderRoadmap();updateStats();renderDayStatus();renderBlog();}
+}
+function setCloudBadge(state){const el=$('cloudBadge');if(!el)return;
+  const m={local:['⚪ Local only','var(--faint)'],connecting:['🟡 Connecting…','var(--warn)'],on:['🟢 Cloud sync on','var(--good)'],error:['🔴 Cloud error — check config','var(--bad)']}[state]||['',''];
+  el.textContent=m[0];el.style.color=m[1];}
+function prof(id){return PROFILES.find(p=>p.id===id);}
+function doy(){const n=new Date();return Math.floor((n-new Date(n.getFullYear(),0,0))/86400000);}
+function quoteOfDay(){return QUOTES[doy()%QUOTES.length];}
+function pdone(id){const d=(CLOUD&&PCACHE[id])?PCACHE[id]:getData(id);return d&&d.done?Object.keys(d.done).length:0;}
 
 /* ============================================================
-   YOUTUBE PLAYER
+   GATE
    ============================================================ */
-let player,ytReady=false,clipTimer=null;
-const tag=document.createElement('script');tag.src="https://www.youtube.com/iframe_api";
-document.head.appendChild(tag);
-window.onYouTubeIframeAPIReady=function(){
-  player=new YT.Player('player',{videoId:DAYS[S.active].vid,
-    host:'https://www.youtube-nocookie.com',
-    playerVars:{rel:0,modestbranding:1,playsinline:1},
-    events:{
-      onReady:()=>{ytReady=true;loadDay(S.active,true);},
-      onError:onPlayerError,
-      onStateChange:(e)=>{if(e.data===YT.PlayerState.PLAYING)hideFallback();}
-    }});
-};
+function renderGate(){
+  const q=quoteOfDay();$('gateQuote').textContent='"'+q[0]+'"';$('gateQuoteA').textContent='— '+q[1];
+  $('profiles').innerHTML=PROFILES.map(p=>{
+    if(p.viewerOf){const tn=prof(p.viewerOf).name.split(' ')[0];
+      return `<div class="pcard" onclick="pickProfile('${p.id}')">
+        <div class="pav" style="background:${p.color}">${p.av}</div>
+        <h3>${p.name}</h3><div class="prole">See ${tn}'s progress &amp; recordings — read-only</div>
+        <div class="ppct" style="margin-top:14px">Tap to watch along 👀</div></div>`;}
+    const dn=pdone(p.id),pct=Math.round(dn/60*100);
+    return `<div class="pcard" onclick="pickProfile('${p.id}')">
+      <div class="pav" style="background:${p.color}">${p.av}</div>
+      <h3>${p.name}</h3><div class="prole">${p.role}</div>
+      <div class="pprog bar"><i style="width:${pct}%"></i></div>
+      <div class="ppct">${dn}/60 days · ${pct}%</div></div>`;
+  }).join('');
+}
+function pickProfile(id){ME=id;localStorage.setItem('mc2_me',id);$('gate').style.display='none';$('app').style.display='block';setView(myHome());window.scrollTo(0,0);}
+
+/* ============================================================
+   VIEW SWITCHING
+   ============================================================ */
+function setView(id){
+  VIEW=id;S=(CLOUD&&PCACHE[id])?Object.assign(defData(),PCACHE[id]):getData(id);activeDay=S.active||0;
+  const me=prof(ME);$('meAv').textContent=me.av;$('meAv').style.background=me.color;$('meName').textContent=me.name.split(' ')[0];
+  const viewing=VIEW!==ME;
+  $('viewBanner').classList.toggle('show',viewing);
+  if(viewing)$('vbName').textContent=prof(VIEW).name;
+  $('dashTitle').textContent=viewing?(prof(VIEW).name+"'s progress"):'Your progress';
+  $('blogOwner').textContent=viewing?('reading '+prof(VIEW).name):'your entries';
+  applyRO(viewing);
+  const q=quoteOfDay();$('heroQuote').textContent='"'+q[0]+'"';$('heroQuoteA').textContent='— '+q[1];
+  if(S.start)$('startDate').value=S.start;
+  loadDay(activeDay,true);renderRoadmap();updateStats();renderLeaderboard();renderBlog();renderGameCards();renderArchive();
+}
+function applyRO(viewing){
+  // studio: when viewing, hide Record/Method tabs but SHOW the archive (read-only) so the viewer can watch recordings
+  $('studioRO').style.display='none';
+  $('studioBody').style.display='block';
+  $('tabRec').style.display=viewing?'none':'';
+  $('tabMethod').style.display=viewing?'none':'';
+  if(viewing)studTab('arch');
+  $('blogEditor').style.display=viewing?'none':'block';
+  $('setupCard').style.display=viewing?'none':'block';
+  $('dayNote').disabled=viewing;
+  $('inF').disabled=viewing;$('outF').disabled=viewing;
+}
+function openSwitch(){
+  $('switchList').innerHTML=PROFILES.map(p=>{
+    const isMe=p.id===ME,dn=pdone(p.id);
+    return `<div class="dayitem" style="cursor:default">
+      <div class="mini-av" style="width:34px;height:34px;border-radius:9px;background:${p.color};display:grid;place-items:center;color:#fff">${p.av}</div>
+      <div style="flex:1"><div style="font-weight:700">${p.name}${isMe?' <span class="chip">you</span>':''}</div><div class="tag">${dn}/60 days</div></div>
+      <button class="btn sm ${p.id===VIEW?'primary':''}" onclick="gotoView('${p.id}')">${isMe?'My portal':'View'}</button>
+      ${isMe?'':`<button class="btn sm ghost" onclick="becomeUser('${p.id}')">Log in as</button>`}
+    </div>`;
+  }).join('');
+  $('switchSheet').style.display='block';
+}
+function closeSwitch(){$('switchSheet').style.display='none';}
+function gotoView(id){closeSwitch();setView(id);window.scrollTo({top:0,behavior:'smooth'});}
+function becomeUser(id){ME=id;localStorage.setItem('mc2_me',id);closeSwitch();setView(myHome());toast('Logged in as '+prof(id).name);}
+function backToMe(){setView(myHome());}
+
+/* ============================================================
+   VIDEO (plain iframe embed + native start/end clip)
+   ============================================================ */
+const EMB="https://www.youtube-nocookie.com/embed/";
+const IFRAME=()=>$('player');
+function embedUrl(id,start,end,auto){let u=EMB+id+"?rel=0&modestbranding=1&playsinline=1&iv_load_policy=3";
+  if(start>0)u+="&start="+Math.floor(start);if(end>0)u+="&end="+Math.floor(end);if(auto)u+="&autoplay=1";return u;}
 function ytUrl(id,start){return "https://www.youtube.com/watch?v="+id+(start>0?("&t="+Math.floor(start)+"s"):"");}
-function showFallback(){const f=document.getElementById('ytFallback');if(f)f.style.display="flex";
-  const d=DAYS[S.active],c=S.clips[S.active]||{};
-  const link=document.getElementById('ytFallbackLink');if(link)link.href=ytUrl(d.vid,c.start||0);}
-function hideFallback(){const f=document.getElementById('ytFallback');if(f)f.style.display="none";}
-function onPlayerError(e){showFallback();}
-function loadVideo(id,start){
-  if(!ytReady)return;
-  if(start&&start>0)player.cueVideoById({videoId:id,startSeconds:start});
-  else player.cueVideoById(id);
-}
-function playClip(){
-  if(!ytReady)return;
-  const c=S.clips[S.active]||{};const st=c.start||0;
-  player.seekTo(st,true);player.playVideo();
-  if(clipTimer)clearInterval(clipTimer);
-  if(c.end&&c.end>st){
-    clipTimer=setInterval(()=>{
-      if(player.getCurrentTime()>=c.end){player.pauseVideo();clearInterval(clipTimer);}
-    },300);
-  }
-}
-function playFull(){if(!ytReady)return;if(clipTimer)clearInterval(clipTimer);player.seekTo(0,true);player.playVideo();}
+function loadVideo(id,start){const f=IFRAME();if(f)f.src=embedUrl(id,start,0,false);}
+function playClip(){const d=DAYS[activeDay],c=S.clips[activeDay]||{};const f=IFRAME();if(f)f.src=embedUrl(d.vid,c.start||0,c.end||0,true);}
+function playFull(){const d=DAYS[activeDay],f=IFRAME();if(f)f.src=embedUrl(d.vid,0,0,true);}
 function fmt(s){s=Math.max(0,Math.floor(s||0));return Math.floor(s/60)+":"+String(s%60).padStart(2,'0');}
-function setIn(){if(!ytReady)return;const c=S.clips[S.active]||{};c.start=Math.floor(player.getCurrentTime());S.clips[S.active]=c;save();renderClip();toast("In point set to "+fmt(c.start));}
-function setOut(){if(!ytReady)return;const c=S.clips[S.active]||{};c.end=Math.floor(player.getCurrentTime());S.clips[S.active]=c;save();renderClip();toast("Out point set to "+fmt(c.end));}
-function clearClip(){S.clips[S.active]={};save();renderClip();toast("Clip cleared");}
-function renderClip(){const c=S.clips[S.active]||{};clipInLbl.textContent=fmt(c.start||0);clipOutLbl.textContent=c.end?fmt(c.end):"end";
-  const d=DAYS[S.active];const w=document.getElementById('ytWatch');if(w)w.href=ytUrl(d.vid,c.start||0);
-  const fl=document.getElementById('ytFallbackLink');if(fl)fl.href=ytUrl(d.vid,c.start||0);}
+function parseT(v){if(v==null)return 0;v=(""+v).trim().toLowerCase();if(v===""||v==="end")return 0;
+  if(v.indexOf(":")>-1){const p=v.split(":").map(n=>parseInt(n,10)||0);return p.length===3?p[0]*3600+p[1]*60+p[2]:p[0]*60+p[1];}return parseInt(v,10)||0;}
+function onTimeField(which,val){if(!canEdit())return;const c=S.clips[activeDay]||{};const t=parseT(val);
+  if(which==='start')c.start=t;else c.end=t;S.clips[activeDay]=c;save();renderClip();toast((which==='start'?'In':'Out')+' set to '+(t?fmt(t):(which==='start'?'0:00':'end')));}
+function clearClip(){if(!canEdit())return;S.clips[activeDay]={};save();renderClip();toast('Clip cleared');}
+function renderClip(){const c=S.clips[activeDay]||{};$('inF').value=fmt(c.start||0);$('outF').value=c.end?fmt(c.end):'end';
+  const d=DAYS[activeDay];$('ytWatch').href=ytUrl(d.vid,c.start||0);}
 
 /* ============================================================
-   LESSON RENDER
+   LESSON / DAY FLOW
    ============================================================ */
-function loadDay(i,skipScroll){
-  i=Math.max(0,Math.min(DAYS.length-1,i));S.active=i;save();
+function loadDay(i,skip){
+  i=Math.max(0,Math.min(DAYS.length-1,i));activeDay=i;S.active=i;save();
   const d=DAYS[i],ph=PHASES[d.p-1];
-  lpTitle.innerHTML=`Day ${i+1} · ${d.t}`;
-  lpPhase.innerHTML=`<span class="badge" style="background:${ph.color}">Phase ${d.p} · ${ph.name}</span>`;
-  lpLook.innerHTML=d.look;
-  lpMission.innerHTML=d.mission;
-  lpDrill.innerHTML=d.drill+` <span class="chip">~${d.min} min</span>`;
-  tTarget.textContent=d.min;targetMin=d.min;
-  dayNote.value=S.notes[i]||"";
-  ytSearch.href="https://www.youtube.com/results?search_query="+encodeURIComponent(d.topic);
-  renderClip();
-  hideFallback();
-  const c=S.clips[i]||{};
-  loadVideo(d.vid,c.start||0);
-  updateDoneBtn();
-  timerReset();
-  renderRoadmap();updateStats();
-  if(!skipScroll)scrollToId('lessonPanel');
+  $('lpTitle').innerHTML=`Day ${i+1} · ${d.t}`;
+  $('lpPhase').innerHTML=`<span class="badge" style="background:${ph.color}">Phase ${d.p} · ${ph.name}</span>`;
+  $('lpLook').innerHTML=d.look;$('lpMission').innerHTML=d.mission;$('lpDrill').innerHTML=d.drill+` <span class="chip">~${d.min} min</span>`;
+  $('tTarget').textContent=d.min;targetMin=d.min;
+  $('dayNote').value=S.notes[i]||"";
+  $('ytSearch').href="https://www.youtube.com/results?search_query="+encodeURIComponent(d.topic);
+  renderClip();loadVideo(d.vid,(S.clips[i]||{}).start||0);
+  renderDayStatus();timerReset();renderRoadmap();updateStats();
+  if(!skip)document.getElementById('lessonPanel').scrollIntoView({behavior:'smooth'});
 }
-function updateDoneBtn(){
-  const on=!!S.done[S.active];
-  doneBtn.innerHTML=on?"✓ Completed — undo":"✓ Mark day complete";
-  doneBtn.className="btn "+(on?"good":"primary");
+function fmtDate(iso){if(!iso)return'';const d=new Date(iso+'T00:00:00');return d.toLocaleDateString(undefined,{day:'numeric',month:'short'});}
+function todayISO(){return new Date().toISOString().slice(0,10);}
+function renderDayStatus(){
+  const i=activeDay,st=S.done[i]?'done':(S.started[i]?'prog':'new');
+  const badge=$('dayStatus');
+  badge.className='daystatus '+(st==='done'?'st-done':st==='prog'?'st-prog':'st-new');
+  badge.textContent=st==='done'?'✓ Completed':st==='prog'?'⏳ In progress':'○ Not started';
+  $('dayDates').textContent=(S.started[i]?('started '+fmtDate(S.started[i])):'')+(S.done[i]?(' · done '+fmtDate(S.done[i])):'');
+  const area=$('doneArea');
+  if(!canEdit()){area.innerHTML='<span class="tag">read-only</span>';return;}
+  if(st==='done')area.innerHTML=`<button class="btn sm good" onclick="undoDone()">✓ Completed — undo</button>`;
+  else if(st==='prog')area.innerHTML=`<button class="btn sm" onclick="continueLater()">Save &amp; continue later</button><button class="btn primary sm" onclick="markComplete()">✓ Mark complete</button>`;
+  else area.innerHTML=`<button class="btn primary sm" onclick="startDay()">▶ Start today's session</button>`;
 }
-function toggleDone(){
-  const i=S.active;
-  if(S.done[i]){delete S.done[i];S.minutes=Math.max(0,S.minutes-DAYS[i].min);}
-  else{S.done[i]=true;S.minutes+=DAYS[i].min;toast("🎉 Day "+(i+1)+" done! "+countDone()+"/60");}
-  save();updateDoneBtn();updateStats();renderRoadmap();
-}
-function nextDay(){saveNote();loadDay(S.active+1);}
-function prevDay(){saveNote();loadDay(S.active-1);}
-function openActive(){
-  // jump to first not-done day
-  let i=0;while(i<DAYS.length&&S.done[i])i++;
-  if(i>=DAYS.length)i=S.active;
-  loadDay(i);
-}
-function saveNote(){S.notes[S.active]=dayNote.value;save();}
-dayNote && dayNote.addEventListener('input',()=>{S.notes[S.active]=dayNote.value;save();});
+function startDay(){if(!canEdit())return;S.started[activeDay]=todayISO();save();renderDayStatus();renderRoadmap();toast('Day '+(activeDay+1)+' started — timer & video ready 🎬');}
+function markComplete(){if(!canEdit())return;const i=activeDay;if(!S.started[i])S.started[i]=todayISO();
+  if(!S.done[i]){S.done[i]=todayISO();S.minutes+=DAYS[i].min;}save();renderDayStatus();updateStats();renderRoadmap();renderLeaderboard();toast('🎉 Day '+(i+1)+' complete! '+Object.keys(S.done).length+'/60');}
+function continueLater(){toast('Saved — pick it back up anytime 👍');}
+function undoDone(){if(!canEdit())return;const i=activeDay;if(S.done[i]){delete S.done[i];S.minutes=Math.max(0,S.minutes-DAYS[i].min);}save();renderDayStatus();updateStats();renderRoadmap();renderLeaderboard();}
+function nextDay(){loadDay(activeDay+1);}
+function prevDay(){loadDay(activeDay-1);}
+function openActive(){let i=0;while(i<DAYS.length&&S.done[i])i++;if(i>=DAYS.length)i=activeDay;loadDay(i);}
+$('dayNote').addEventListener('input',()=>{if(canEdit()){S.notes[activeDay]=$('dayNote').value;save();}});
 
 /* ============================================================
    ROADMAP
    ============================================================ */
 function renderRoadmap(){
-  const wrap=document.getElementById('roadmapWrap');let html="";
+  let html="";
   PHASES.forEach(ph=>{
     const list=DAYS.map((d,idx)=>({d,idx})).filter(x=>x.d.p===ph.id);
-    const done=list.filter(x=>S.done[x.idx]).length;
-    const pct=Math.round(done/list.length*100);
-    const open=list.some(x=>x.idx===S.active)?"open":"";
-    html+=`<details class="phase" ${open}>
-      <summary>
-        <div class="pn" style="background:${ph.color}">${ph.id}</div>
-        <div><div class="pt">Phase ${ph.id} · ${ph.name}</div>
-        <div class="pmeta">Days ${list[0].idx+1}–${list[list.length-1].idx+1} · ${done}/${list.length} done</div></div>
-        <div class="psp"></div>
-        <div class="bar pbar"><i style="width:${pct}%;background:${ph.color}"></i></div>
-      </summary>
-      <div class="days">`;
+    const done=list.filter(x=>S.done[x.idx]).length,pct=Math.round(done/list.length*100);
+    const open=list.some(x=>x.idx===activeDay)?'open':'';
+    html+=`<details class="phase" ${open}><summary>
+      <div class="pn" style="background:${ph.color}">${ph.id}</div>
+      <div><div class="pt">Phase ${ph.id} · ${ph.name}</div><div class="pmeta">Days ${list[0].idx+1}–${list[list.length-1].idx+1} · ${done}/${list.length} done</div></div>
+      <div class="psp"></div><div class="bar pbar"><i style="width:${pct}%;background:${ph.color}"></i></div>
+      </summary><div class="days">`;
     list.forEach(x=>{
-      const on=S.done[x.idx]?"on":"";
-      const act=x.idx===S.active?"active":"";
-      html+=`<div class="dayitem ${act}" onclick="saveNote();loadDay(${x.idx})">
-        <div class="dcheck ${on}">${on?"✓":""}</div>
-        <div class="dnum">Day ${x.idx+1}</div>
-        <div class="dttl">${x.d.t}</div>
-        <div class="dmin">${x.d.min} min</div></div>`;
+      const st=S.done[x.idx]?'on':(S.started[x.idx]?'prog':'');
+      html+=`<div class="dayitem ${x.idx===activeDay?'active':''}" onclick="loadDay(${x.idx})">
+        <div class="dcheck ${st}">${st==='on'?'✓':st==='prog'?'⏳':''}</div>
+        <div class="dnum">Day ${x.idx+1}</div><div class="dttl">${x.d.t}</div><div class="dmin">${x.d.min}m</div></div>`;
     });
     html+=`</div></details>`;
   });
-  wrap.innerHTML=html;
+  $('roadmapWrap').innerHTML=html;
 }
 
 /* ============================================================
-   STATS
+   STATS + LEADERBOARD
    ============================================================ */
-function countDone(){return Object.keys(S.done).length;}
 function updateStats(){
-  const dn=countDone();
-  stDone.innerHTML=dn+'<span style="font-size:15px;color:var(--faint)">/60</span>';
-  stMin.textContent=S.minutes;
-  progFill.style.width=(dn/60*100)+"%";
-  // streak = consecutive completed from day 1
-  let streak=0;for(let i=0;i<DAYS.length;i++){if(S.done[i])streak++;else break;}
-  stStreak.textContent=streak;
-  // elapsed + pace
-  if(S.start){
-    const d0=new Date(S.start+"T00:00:00");
-    const today=new Date();today.setHours(0,0,0,0);
-    const el=Math.max(0,Math.round((today-d0)/86400000));
-    stElapsed.textContent=el;
-    dateline.textContent="Started "+d0.toLocaleDateString(undefined,{day:'numeric',month:'short',year:'numeric'});
-    const windowDays=90;const left=windowDays-el;
-    if(dn>=60)paceLine.innerHTML="🏆 <b>All 60 done!</b> Move to your maintenance plan (Day 60).";
-    else if(left<=0)paceLine.innerHTML=`Your 90-day window is up — <b>${dn}/60</b> done. Totally fine to keep going at your pace.`;
-    else paceLine.innerHTML=`<b>${left}</b> days left in your 90-day window · <b>${60-dn}</b> sessions to go · you can skip ~<b>${Math.max(0,left-(60-dn))}</b> more days and still finish on time.`;
-  }else{
-    stElapsed.textContent="0";
-    dateline.textContent="";
-    paceLine.textContent="Set your start date above to begin tracking your 90-day window.";
-  }
+  const dn=Object.keys(S.done).length;
+  $('stDone').innerHTML=dn+'<span style="font-size:15px;color:var(--faint)">/60</span>';
+  $('stMin').textContent=S.minutes;$('progFill').style.width=(dn/60*100)+'%';
+  let streak=0;for(let i=0;i<DAYS.length;i++){if(S.done[i])streak++;else break;}$('stStreak').textContent=streak;
+  if(S.start){const d0=new Date(S.start+'T00:00:00'),t=new Date();t.setHours(0,0,0,0);
+    const el=Math.max(0,Math.round((t-d0)/86400000));$('stElapsed').textContent=el;
+    $('dateline').textContent='Started '+d0.toLocaleDateString(undefined,{day:'numeric',month:'short',year:'numeric'});
+    const left=90-el;
+    if(dn>=60)$('paceLine').innerHTML='🏆 <b>All 60 done!</b> On to the maintenance plan (Day 60).';
+    else if(left<=0)$('paceLine').innerHTML=`90-day window up — <b>${dn}/60</b> done. Keep going at your pace.`;
+    else $('paceLine').innerHTML=`<b>${left}</b> days left · <b>${60-dn}</b> sessions to go · you can still rest ~<b>${Math.max(0,left-(60-dn))}</b> days and finish on time.`;
+  }else{$('stElapsed').textContent='0';$('dateline').textContent='';$('paceLine').textContent='Set your start date below to track the 90-day window.';}
 }
+function renderLeaderboard(){
+  $('leaderboard').innerHTML=PROFILES.filter(p=>!p.viewerOf).map(p=>{
+    const dn=pdone(p.id),pct=Math.round(dn/60*100),you=p.id===ME;
+    return `<div class="dayitem" onclick="gotoView('${p.id}')" style="gap:10px">
+      <div class="mini-av" style="width:30px;height:30px;border-radius:8px;background:${p.color};display:grid;place-items:center;color:#fff;font-size:13px">${p.av}</div>
+      <div style="flex:1"><div style="font-weight:700;font-size:14px">${p.name}${you?' <span class="chip">you</span>':''}</div>
+      <div class="bar" style="height:8px;margin-top:4px"><i style="width:${pct}%;background:${p.color}"></i></div></div>
+      <div class="tag">${dn}/60</div></div>`;
+  }).join('');
+}
+$('startDate').addEventListener('change',e=>{if(canEdit()){S.start=e.target.value;save();updateStats();}});
+function setToWed(){if(!canEdit())return;S.start='2026-11-18';$('startDate').value='2026-11-18';save();updateStats();toast('Start set to Wed 18 Nov 2026');}
 
 /* ============================================================
    DRILL TIMER
    ============================================================ */
 let targetMin=15,tInt=null,tSec=0;
-function timerStart(){
-  if(tInt)return;timer.classList.add('run');tStart.textContent="Running…";
-  tInt=setInterval(()=>{tSec++;timer.textContent=fmt(tSec);
-    if(tSec===targetMin*60){toast("⏰ "+targetMin+" min — target hit!");timer.style.color="var(--warn)";}
-  },1000);
-}
-function timerStop(){clearInterval(tInt);tInt=null;timer.classList.remove('run');tStart.textContent="Resume timer";}
-function timerReset(){clearInterval(tInt);tInt=null;tSec=0;timer.textContent="00:00";timer.classList.remove('run');timer.style.color="";tStart.textContent="Start drill timer";}
+function timerStart(){if(tInt)return;$('timer').classList.add('run');$('tStart').textContent='Running…';
+  tInt=setInterval(()=>{tSec++;$('timer').textContent=fmt(tSec);if(tSec===targetMin*60){toast('⏰ '+targetMin+' min — target hit!');$('timer').style.color='var(--warn)';}},1000);}
+function timerStop(){clearInterval(tInt);tInt=null;$('timer').classList.remove('run');$('tStart').textContent='Resume';}
+function timerReset(){clearInterval(tInt);tInt=null;tSec=0;$('timer').textContent='00:00';$('timer').classList.remove('run');$('timer').style.color='';$('tStart').textContent='Start timer';}
 
 /* ============================================================
-   RECORD STUDIO (MediaRecorder)
+   STUDIO — tabs, MediaRecorder, IndexedDB archive
    ============================================================ */
-let mediaRec,chunks=[],stream,isVid=false;
+function studTab(w){
+  $('paneRec').style.display=w==='rec'?'grid':'none';$('paneArch').style.display=w==='arch'?'block':'none';$('paneMethod').style.display=w==='method'?'block':'none';
+  $('tabRec').classList.toggle('on',w==='rec');$('tabArch').classList.toggle('on',w==='arch');$('tabMethod').classList.toggle('on',w==='method');
+  if(w==='arch')renderArchive();}
+let DB=null;
+function openDB(){return new Promise((res,rej)=>{const r=indexedDB.open('mc2_media',1);
+  r.onupgradeneeded=e=>{const db=e.target.result;if(!db.objectStoreNames.contains('rec')){const s=db.createObjectStore('rec',{keyPath:'id',autoIncrement:true});s.createIndex('profile','profile');}};
+  r.onsuccess=e=>{DB=e.target.result;res(DB);};r.onerror=e=>rej(e);});}
+let mediaRec,chunks=[],stream,isVid=false,lastBlob=null,lastType='',recInt=null;
 async function startRec(video){
-  try{
-    isVid=video;
-    stream=await navigator.mediaDevices.getUserMedia({audio:true,video:video});
-    if(video){livePreview.style.display="block";livePreview.srcObject=stream;livePreview.play();}
-    chunks=[];mediaRec=new MediaRecorder(stream);
-    mediaRec.ondataavailable=e=>{if(e.data.size)chunks.push(e.data);};
-    mediaRec.onstop=finishRec;
-    mediaRec.start();
-    recVideo.disabled=true;recAudio.disabled=true;recStop.disabled=false;
-    let secs=0;recStatus.innerHTML='<span class="reclamp"><span class="dot"></span>Recording… <b id="recTime">0:00</b></span>';
-    recInt=setInterval(()=>{secs++;const el=document.getElementById('recTime');if(el)el.textContent=fmt(secs);
-      if(secs===300)toast("5 minutes — great, you can stop now.");},1000);
-  }catch(err){recStatus.innerHTML='<span style="color:var(--bad)">⚠️ '+(err.name==='NotAllowedError'?'Camera/mic permission denied. Allow access & retry.':err.message)+'</span>';}
+  try{isVid=video;stream=await navigator.mediaDevices.getUserMedia({audio:true,video:video});
+    if(video){$('livePreview').style.display='block';$('livePreview').srcObject=stream;$('livePreview').play();}
+    chunks=[];mediaRec=new MediaRecorder(stream);mediaRec.ondataavailable=e=>{if(e.data.size)chunks.push(e.data);};mediaRec.onstop=finishRec;mediaRec.start();
+    $('recVideo').disabled=true;$('recAudio').disabled=true;$('recStop').disabled=false;
+    let s=0;$('recStatus').innerHTML='<span class="reclamp"><span class="dot"></span>Recording… <b id="recTime">0:00</b></span>';
+    recInt=setInterval(()=>{s++;const el=$('recTime');if(el)el.textContent=fmt(s);if(s===300)toast('5 min — you can stop now.');},1000);
+  }catch(err){$('recStatus').innerHTML='<span style="color:var(--bad)">⚠️ '+(err.name==='NotAllowedError'?'Camera/mic blocked — allow access & retry.':err.message)+'</span>';}
 }
-let recInt=null;
-function stopRec(){if(mediaRec&&mediaRec.state!=="inactive")mediaRec.stop();}
-function finishRec(){
-  clearInterval(recInt);
-  stream.getTracks().forEach(t=>t.stop());
-  livePreview.style.display="none";livePreview.srcObject=null;
-  const type=isVid?"video/webm":"audio/webm";
-  const blob=new Blob(chunks,{type});const url=URL.createObjectURL(blob);
-  playbackWrap.style.display="block";
-  const pv=document.getElementById('playback'),pa=document.getElementById('playbackA');
-  if(isVid){pv.style.display="block";pa.style.display="none";pv.src=url;}
-  else{pa.style.display="block";pv.style.display="none";pa.src=url;}
-  const ts=new Date().toISOString().slice(0,16).replace(/[:T]/g,'-');
-  dlBtn.href=url;dlBtn.download=`speaking-day${S.active+1}-${ts}.webm`;
-  recStatus.innerHTML='<span style="color:var(--good)">✓ Saved below. Review it <b>tomorrow</b>.</span>';
-  recVideo.disabled=false;recAudio.disabled=false;recStop.disabled=true;
+function stopRec(){if(mediaRec&&mediaRec.state!=='inactive')mediaRec.stop();}
+function finishRec(){clearInterval(recInt);stream.getTracks().forEach(t=>t.stop());
+  $('livePreview').style.display='none';$('livePreview').srcObject=null;
+  lastType=isVid?'video/webm':'audio/webm';lastBlob=new Blob(chunks,{type:lastType});const url=URL.createObjectURL(lastBlob);
+  $('playbackWrap').style.display='block';
+  if(isVid){$('playback').style.display='block';$('playbackA').style.display='none';$('playback').src=url;}
+  else{$('playbackA').style.display='block';$('playback').style.display='none';$('playbackA').src=url;}
+  const ts=new Date().toISOString().slice(0,16).replace(/[:T]/g,'-');$('dlBtn').href=url;$('dlBtn').download=`speaking-day${activeDay+1}-${ts}.webm`;
+  $('recRemark').value='Day '+(activeDay+1)+' · '+DAYS[activeDay].t;
+  $('recStatus').innerHTML='<span style="color:var(--good)">✓ Recorded. Save it to your archive or download.</span>';
+  $('recVideo').disabled=false;$('recAudio').disabled=false;$('recStop').disabled=true;
+}
+async function saveToArchive(){if(!lastBlob){toast('Record something first');return;}
+  await archiveBlob(lastBlob,isVid?'video':'audio',activeDay+1,DAYS[activeDay].t,$('recRemark').value);
+  $('playbackWrap').style.display='none';lastBlob=null;studTab('arch');}
+async function archiveBlob(blob,type,day,title,remark){
+  const ts=Date.now();
+  // local copy (fast replay + offline)
+  try{await openDB();const tx=DB.transaction('rec','readwrite');tx.objectStore('rec').add({profile:ME,day,title,type,remark,ts,blob});}catch(e){}
+  // cloud copy so the Viewer can watch from any device
+  if(CLOUD&&fdb){
+    if(blob.size>CLOUD_REC_CAP){toast('💾 Saved on this device. Too large for cloud — download to keep & share.');}
+    else{try{const data=await blobToDataURL(blob);await fdb.ref('recordings/'+ME).push({day,title,type,remark,ts,data});toast('☁️ Saved to cloud — the Viewer can watch it now');}
+      catch(e){toast('💾 Saved on device (cloud save failed)');}}
+  }else toast('💾 Saved to your archive on this device');
+}
+async function renderArchive(){
+  const target=canEdit()?ME:VIEW, mine=canEdit();
+  // cloud recordings for the target profile
+  const cloudRecs=[];const rc=RCACHE[target]||{};
+  Object.keys(rc).forEach(k=>cloudRecs.push(Object.assign({cid:k,cloud:true},rc[k])));
+  // own local recordings (only meaningful for self)
+  let localRecs=[];
+  if(mine){try{await openDB();localRecs=await new Promise(res=>{const idx=DB.transaction('rec','readonly').objectStore('rec').index('profile').getAll(ME);idx.onsuccess=()=>res(idx.result||[]);idx.onerror=()=>res([]);});}catch(e){}}
+  // prefer cloud when available (visible everywhere); fall back to local-only items not yet in cloud
+  const cloudTs=new Set(cloudRecs.map(r=>r.ts));
+  const merged=[...cloudRecs,...localRecs.filter(r=>!cloudTs.has(r.ts)).map(r=>Object.assign({cloud:false},r))].sort((a,b)=>b.ts-a.ts);
+  $('archEmpty').style.display=merged.length?'none':'block';
+  if(!merged.length){$('archGrid').innerHTML='';if(!mine)$('archEmpty').textContent='No recordings shared yet.';return;}
+  $('archGrid').innerHTML=merged.map(r=>{
+    const src=r.cloud?r.data:URL.createObjectURL(r.blob);
+    const dt=new Date(r.ts).toLocaleDateString(undefined,{day:'numeric',month:'short',year:'numeric'});
+    const media=r.type==='video'?`<video class="preview" controls playsinline src="${src}"></video>`:`<audio class="preview" controls src="${src}"></audio>`;
+    const del=mine?`<button class="btn sm ghost" onclick="delRec('${r.cloud?('c:'+r.cid):('l:'+r.id)}',${r.ts})" style="padding:2px 8px">🗑</button>`:'';
+    const tag=r.cloud?'<span class="chip" style="font-size:10px">☁ cloud</span>':'<span class="chip" style="font-size:10px">device only</span>';
+    return `<div class="arch"><div class="meta"><span>Day ${r.day} · ${r.type==='video'?'🎥':'🎙️'} ${dt} ${tag}</span>${del}</div>
+      ${media}<div style="font-size:13px;margin-top:6px"><b>${esc(r.title||'')}</b></div><div class="tag">${esc(r.remark||'')}</div>
+      <a class="btn sm ghost" style="margin-top:8px" href="${src}" download="speaking-day${r.day}.webm">⤓ Download</a></div>`;
+  }).join('');
+}
+async function delRec(key,ts){if(!canEdit())return;if(!confirm('Delete this recording?'))return;
+  if(key.startsWith('c:')&&fdb){await fdb.ref('recordings/'+ME+'/'+key.slice(2)).remove();}
+  // also remove any local copy with same ts
+  try{await openDB();const st=DB.transaction('rec','readwrite').objectStore('rec');const all=st.index('profile').getAll(ME);all.onsuccess=()=>{(all.result||[]).forEach(r=>{if(r.ts===ts||('l:'+r.id)===key)st.delete(r.id);});};}catch(e){}
+  toast('Deleted');setTimeout(renderArchive,200);}
+
+/* ============================================================
+   GAMES
+   ============================================================ */
+let gState=null;
+function renderGameCards(){
+  $('gameCards').innerHTML=GAMES.map(g=>`<div class="gcard" onclick="startGame('${g.id}')">
+    <div class="gi">${g.icon}</div><h4>${g.name}</h4><p>${g.desc}</p></div>`).join('');
+}
+function pick(a){return a[Math.floor(Math.random()*a.length)];}
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+/* no-repeat deck: draws every prompt once before any repeats, then reshuffles */
+function drawPrompt(g){const k='mc2_deck_'+g.id;let deck=[];try{deck=JSON.parse(localStorage.getItem(k)||'[]');}catch(e){}
+  if(!deck.length)deck=shuffle(g.prompts.map((_,i)=>i));
+  const idx=deck.shift();try{localStorage.setItem(k,JSON.stringify(deck));}catch(e){}
+  return g.prompts[idx];}
+let gTurn=0,gTimer=null,gLeft=0,gTap=0,gSlide=0,gStory=[];
+function startGame(id){const g=GAMES.find(x=>x.id===id);gState=g;gTurn=0;gTap=0;gSlide=0;gStory=[];
+  if(g.slides)g._slides=shuffle(g.prompts);else g._prompt=drawPrompt(g);
+  $('gameStage').classList.add('show');renderStage();$('gameStage').scrollIntoView({behavior:'smooth'});}
+function curPlayer(){return PROFILES[gTurn%PROFILES.length];}
+function renderStage(){const g=gState;const p=curPlayer();
+  let body=`<div class="row" style="justify-content:space-between">
+    <span class="turnpill" style="background:${p.color}">${p.av} ${p.name.split(' ')[0]}'s turn</span>
+    <div class="row">${canEdit()?`<button class="btn sm" id="gRecBtn" onclick="toggleGameRec()">🎙️ Record attempt</button><span id="gRecStat" class="tag"></span>`:''}
+    <button class="btn sm ghost" onclick="closeGame()">✕ Close</button></div></div>
+    <div style="text-align:center;margin-top:8px"><div class="tag">${g.icon} ${g.name}</div>`;
+  if(g.story){
+    body+=`<div class="prompt-big">${gStory.length?gStory[gStory.length-1]:(g._prompt||(g._prompt=drawPrompt(g)))}</div>
+      <input class="tin" id="storyIn" placeholder="Add the next sentence...">
+      <div class="row" style="justify-content:center;margin-top:10px">
+        <button class="btn primary" onclick="storyNext()">Add &amp; pass →</button></div>
+      <div style="text-align:left;margin-top:14px" class="tag">${gStory.map((s,i)=>`${i+1}. ${s}`).join('<br>')}</div>`;
+  }else if(g.slides){
+    const sl=g._slides||(g._slides=shuffle(g.prompts));
+    body+=`<div class="prompt-big" id="slideNow">${sl[0]}</div><div class="bigtimer" id="bt">${fmt(g.time)}</div>
+      <div class="row" style="justify-content:center;margin-top:10px">
+        <button class="btn primary" onclick="runTimer(true)">▶ Start talk</button>
+        <button class="btn ghost" onclick="reshuffleSlides()">🔀 Shuffle slides</button>
+        <button class="btn ghost" onclick="passTurn()">Next player →</button></div>
+      <div class="tag" style="margin-top:8px">Slides flip every 15s in a random order — keep talking, make it make sense.</div>`;
+  }else{
+    body+=`<div class="prompt-big">${g._prompt||(g._prompt=drawPrompt(g))}</div>
+      <div class="bigtimer" id="bt">${fmt(g.time)}</div>
+      <div class="row" style="justify-content:center;margin-top:10px">
+        <button class="btn primary" onclick="runTimer(false)">▶ Start ${g.time}s</button>`;
+    if(g.counter)body+=`<button class="btn bad" onclick="gTap++;$('tapN').textContent=gTap" id="tapBtn">🚫 Filler! (<span id="tapN">0</span>)</button>`;
+    body+=`<button class="btn ghost" onclick="reroll()">🔀 New prompt</button>
+        <button class="btn ghost" onclick="passTurn()">Next player →</button></div>`;
+    if(g.counter)body+=`<div class="tag" style="margin-top:8px">Tap every time you say um / uh / like / so. Lower = better.</div>`;
+  }
+  body+=`</div>`;$('gameStage').innerHTML=body;
+}
+function runTimer(isSlides){const g=gState;gLeft=g.time;clearInterval(gTimer);
+  gTimer=setInterval(()=>{gLeft--;const bt=$('bt');if(bt){bt.textContent=fmt(gLeft);bt.classList.toggle('low',gLeft<=10);}
+    if(isSlides&&gLeft%15===0&&gLeft>0){const sl=g._slides||g.prompts;gSlide=(gSlide+1)%sl.length;const sn=$('slideNow');if(sn)sn.textContent=sl[gSlide];}
+    if(gLeft<=0){clearInterval(gTimer);toast('⏱️ Time! '+(g.counter?('Fillers: '+gTap):'Nice — next player'));if(bt)bt.textContent="Done!";}
+  },1000);}
+function reroll(){gState._prompt=drawPrompt(gState);gTap=0;renderStage();}
+function passTurn(){clearInterval(gTimer);gTurn++;gTap=0;gSlide=0;if(gState){if(gState.slides)gState._slides=shuffle(gState.prompts);else if(!gState.story)gState._prompt=drawPrompt(gState);}renderStage();}
+function reshuffleSlides(){if(gState&&gState.slides){clearInterval(gTimer);gSlide=0;gState._slides=shuffle(gState.prompts);renderStage();toast('Slides shuffled 🔀');}}
+function storyNext(){const v=$('storyIn').value.trim();if(v)gStory.push(v);gTurn++;renderStage();}
+function closeGame(){clearInterval(gTimer);if(gRec&&gRec.state!=='inactive')gRec.stop();$('gameStage').classList.remove('show');if(gState)delete gState._prompt;gState=null;}
+/* game recorder (audio) → archive */
+let gRec=null,gChunks=[],gStream=null;
+async function toggleGameRec(){
+  if(gRec&&gRec.state!=='inactive'){gRec.stop();return;}
+  try{gStream=await navigator.mediaDevices.getUserMedia({audio:true});gChunks=[];gRec=new MediaRecorder(gStream);
+    gRec.ondataavailable=e=>{if(e.data.size)gChunks.push(e.data);};
+    gRec.onstop=async()=>{gStream.getTracks().forEach(t=>t.stop());const blob=new Blob(gChunks,{type:'audio/webm'});
+      const label=gState?(gState.name+(gState._prompt?(' — '+gState._prompt):'')):'Speaking game';
+      isVid=false;await archiveBlob(blob,'audio',activeDay+1,'🎲 '+(gState?gState.name:'Game'),label);
+      const b=$('gRecBtn'),s=$('gRecStat');if(b){b.textContent='🎙️ Record attempt';b.classList.remove('bad');}if(s)s.textContent='saved ✓';};
+    gRec.start();const b=$('gRecBtn'),s=$('gRecStat');if(b){b.textContent='■ Stop & save';b.classList.add('bad');}if(s)s.textContent='● recording…';
+  }catch(err){const s=$('gRecStat');if(s)s.textContent='mic blocked';}
 }
 
 /* ============================================================
-   SETUP / MISC
+   BLOG
    ============================================================ */
-function setToWed(){S.start="2026-11-18";startDate.value=S.start;save();updateStats();toast("Start set to Wed 18 Nov 2026");}
-startDate && startDate.addEventListener('change',e=>{S.start=e.target.value;save();updateStats();});
-function resetAll(){if(confirm("Erase all progress, notes and clips on this device?")){S=def();save();location.reload();}}
-function scrollToId(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});}
-function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2200);}
+function renderBlog(){
+  const list=S.blog||[];
+  $('blogList').innerHTML=list.length?('<div class="tag" style="margin-bottom:10px">'+list.length+' entr'+(list.length>1?'ies':'y')+' · newest first</div>'+list.slice().reverse().map(p=>`<div class="blogpost">
+    <div class="row" style="justify-content:space-between"><h3>${esc(p.title||'Untitled')}</h3>
+    ${canEdit()?`<div class="row"><button class="btn sm ghost" onclick="editPost(${p.id})">✎</button><button class="btn sm ghost" onclick="delPost(${p.id})">🗑</button></div>`:''}</div>
+    <div class="bmeta">${p.day?`<span class="chip" style="font-size:10px">Day ${p.day}</span> `:''}${new Date(p.ts).toLocaleString(undefined,{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'})}</div>
+    <div class="bbody">${esc(p.body||'')}</div></div>`).join('')):`<div class="tag">No entries yet.${canEdit()?' Write your first above.':''}</div>`;
+}
+function esc(s){return(s+'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
+function addPost(){if(!canEdit())return;const t=$('blogTitle').value.trim(),b=$('blogBody').value.trim();if(!t&&!b){toast('Write something first');return;}
+  if(editId){const p=S.blog.find(x=>x.id===editId);p.title=t;p.body=b;editId=null;$('blogCancel').style.display='none';}
+  else S.blog.push({id:Date.now(),title:t,body:b,ts:Date.now(),day:activeDay+1});
+  save();$('blogTitle').value='';$('blogBody').value='';renderBlog();toast('Saved to your journal');}
+function editPost(id){const p=S.blog.find(x=>x.id===id);if(!p)return;editId=id;$('blogTitle').value=p.title;$('blogBody').value=p.body;$('blogCancel').style.display='inline-flex';$('blogEditor').scrollIntoView({behavior:'smooth'});}
+function cancelEdit(){editId=null;$('blogTitle').value='';$('blogBody').value='';$('blogCancel').style.display='none';}
+function delPost(id){if(!canEdit())return;if(!confirm('Delete this entry?'))return;S.blog=S.blog.filter(x=>x.id!==id);save();renderBlog();}
 
-/* theme */
-themeBtn.onclick=()=>{
-  const l=document.documentElement.getAttribute('data-theme')==='light';
-  document.documentElement.setAttribute('data-theme',l?'dark':'light');
-  themeBtn.textContent=l?'🌙':'☀️';localStorage.setItem('mc_theme',l?'dark':'light');
-};
-if(localStorage.getItem('mc_theme')==='light'){document.documentElement.setAttribute('data-theme','light');themeBtn.textContent='☀️';}
+/* ============================================================
+   EXPORT / IMPORT
+   ============================================================ */
+function exportProg(){const code=btoa(unescape(encodeURIComponent(JSON.stringify({p:ME,d:getData(ME)}))));
+  navigator.clipboard?.writeText(code).then(()=>toast('📋 Share code copied to clipboard')).catch(()=>{});
+  prompt('Copy this code and send it to whoever is tracking your progress:',code);}
+function importProg(){const code=prompt('Paste a share code to load that person\'s progress:');if(!code)return;
+  try{const o=JSON.parse(decodeURIComponent(escape(atob(code.trim()))));if(!o.p||!o.d)throw 0;putData(o.p,o.d);toast('Loaded '+prof(o.p).name+"'s progress");renderLeaderboard();if(VIEW===o.p)setView(o.p);}
+  catch(e){toast('⚠️ That code didn\'t work');}}
 
-/* init */
-if(S.start)startDate.value=S.start;
-renderRoadmap();updateStats();
-// lesson loads once YT is ready; render text now for instant paint:
-(function initText(){const d=DAYS[S.active],ph=PHASES[d.p-1];
-  lpTitle.innerHTML=`Day ${S.active+1} · ${d.t}`;
-  lpPhase.innerHTML=`<span class="badge" style="background:${ph.color}">Phase ${d.p} · ${ph.name}</span>`;
-  lpLook.innerHTML=d.look;lpMission.innerHTML=d.mission;lpDrill.innerHTML=d.drill+` <span class="chip">~${d.min} min</span>`;
-  tTarget.textContent=d.min;targetMin=d.min;dayNote.value=S.notes[S.active]||"";
-  ytSearch.href="https://www.youtube.com/results?search_query="+encodeURIComponent(d.topic);
-  renderClip();updateDoneBtn();
-})();
+/* ============================================================
+   THEME + INIT
+   ============================================================ */
+$('themeBtn').onclick=()=>{const l=document.documentElement.getAttribute('data-theme')==='light';
+  document.documentElement.setAttribute('data-theme',l?'dark':'light');$('themeBtn').textContent=l?'🌙':'☀️';localStorage.setItem('mc2_theme',l?'dark':'light');};
+if(localStorage.getItem('mc2_theme')==='light'){document.documentElement.setAttribute('data-theme','light');$('themeBtn').textContent='☀️';}
+function toast(m){const t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2200);}
+
+/* boot */
+renderGate();
+if(ME&&prof(ME)){$('gate').style.display='none';$('app').style.display='block';setView(myHome());}
+cloudInit();
 </script>
 </body>
 </html>
